@@ -1,4 +1,4 @@
-/*------------------------------------------
+﻿/*------------------------------------------
 Template Name: AdminEx Dashboard
 Author: ThemeBucket
 -------------------------------------------*/
@@ -11,7 +11,7 @@ Author: ThemeBucket
 
 body {
     background: #424f63;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 微软雅黑;
     color: #7a7676;
     line-height: 20px;
     overflow-x: hidden;
@@ -19,7 +19,7 @@ body {
 }
 
 input, select, textarea {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 微软雅黑;
     color: #767676;
 }
 
@@ -33,10 +33,11 @@ a:focus, a:active, a:hover {
     -moz-transition: all 0.3s;
     transition: all 0.3s;
     color: #353F4F;
+	font-family:微软雅黑;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 微软雅黑;
 }
 
 .mtop10 {
@@ -94,7 +95,7 @@ hr {
     font-weight: normal;
     color: #fff;
     font-weight: normal;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 微软雅黑;
     position: absolute;
     bottom: -50px;
     width: 100%;
@@ -134,7 +135,7 @@ hr {
     color: #fff;
     text-transform: uppercase;
     font-weight: normal;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 微软雅黑;
     margin: 20px 0 5px;
     padding: 5px;
     -webkit-transition: all 0.3s;
@@ -812,7 +813,7 @@ h5.left-nav-title {
 
 .normal-list li .name {
     font-size: 13px;
-    font-family: 'Arial' Helvetica, sans-serif;
+    font-family: 微软雅黑;
     line-height: 21px;
 }
 
@@ -906,7 +907,7 @@ h5.left-nav-title {
 }
 
 .page-heading {
-    padding: 15px;
+    padding: 5px;
     position: relative;
 }
 
@@ -2083,7 +2084,7 @@ ul.user-states li {
 
 #external-events .external-event {
     font-size: 11px;
-    font-family: 'Arial';
+    font-family: 微软雅黑;
     font-weight: normal;
 }
 
