@@ -25,7 +25,7 @@
 
 <div class="container">
 
-    <form class="form-signin" action="html/index.html">
+    <form class="form-signin" action="login.php" method=post>
         <div class="form-signin-heading text-center">
             <h1 class="sign-title">Sign In</h1>
             <img src="images/login-logo.png" alt=""/>
@@ -34,14 +34,31 @@
             <input type="text" class="form-control" name="phone" placeholder="手机号" >
             <input type="password" class="form-control" name="psw" placeholder="密码">
 			<?php
-            //$link = mysqli_connect()_connect('hostname','dbuser','dbpassword');
-            $link = mysqli_connect('localhost','root','','odb');
-            if (!$link) {
-                die('Could not connect to MySQL: ' . mysqlierror());
-            }
-            //echo 'Connection OK';
-            mysqli_close($link);
+            if($_POST)
+            {
+                $phone = $_POST['phone'];
+                $psw = $_POST['psw'];
+                $link = mysqli_connect('localhost', 'root', '', 'odb');
+                $sql = "select password,ifboss,username from user where tel = '$phone' ";
 
+                /*$res = mysqli_query($link, $sql);
+                $rows=$row = mysqli_fetch_row($res);*/
+
+                if ($result = mysqli_query($link, $sql)) {
+                    while ($row = mysqli_fetch_row($result)) {
+                        if ($row[0] == $psw) {
+
+                            if ($row[1] == 1)
+                                header('location:../ILEMC/html/b-index.html');
+                            else
+                                header('location:../ILEMC/html/index.html');
+                        } else
+                            echo 'login fail!';
+                    }
+                }
+                mysqli_free_result($result);
+                mysqli_close($link);
+            }
             ?>
 			
             <button class="btn btn-lg btn-login btn-block" type="submit">
