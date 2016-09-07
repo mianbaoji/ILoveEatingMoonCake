@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -32,7 +33,17 @@
         <div class="login-wrap">
             <input type="text" class="form-control" name="phone" placeholder="手机号" >
             <input type="password" class="form-control" name="psw" placeholder="密码">
+			<?php
+            //$link = mysqli_connect()_connect('hostname','dbuser','dbpassword');
+            $link = mysqli_connect('localhost','root','','odb');
+            if (!$link) {
+                die('Could not connect to MySQL: ' . mysqlierror());
+            }
+            //echo 'Connection OK';
+            mysqli_close($link);
 
+            ?>
+			
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 <i class="fa fa-check"></i>
             </button>
