@@ -33,25 +33,38 @@
         <div class="login-wrap">
             <input type="text" class="form-control" name="phone" placeholder="手机号" >
             <input type="password" class="form-control" name="psw" placeholder="密码">
-			<?php
+
+            <?php
             if($_POST)
             {
                 $phone = $_POST['phone'];
                 $psw = $_POST['psw'];
                 $link = mysqli_connect('localhost', 'root', '', 'odb');
-                $sql = "select password,ifboss,username from user where tel = '$phone' ";
+                $sql = "select password,ifboss,username,id from user where tel = '$phone' ";
 
                 /*$res = mysqli_query($link, $sql);
                 $rows=$row = mysqli_fetch_row($res);*/
-
+                if(!session_id())
+                    session_start();
                 if ($result = mysqli_query($link, $sql)) {
                     while ($row = mysqli_fetch_row($result)) {
                         if ($row[0] == $psw) {
 
+                            $_SESSION['iflogin']=1;   //判断是否已经登录的依据。
+                            $_SESSION['userid']=$row[3];  //记录当前登录用户id。
+                            //header('location:../ILEMC/test.php');
+
                             if ($row[1] == 1)
-                                header('location:../ILEMC/html/b-index.html');
+                            {
+                                header('location:../ILEMC/html/b-index.php');
+
+                            }
                             else
-                                header('location:../ILEMC/html/index.html');
+                            {
+                                header('location:../ILEMC/html/index.php');
+
+                            }
+
                         } else
                             echo 'login fail!';
                     }

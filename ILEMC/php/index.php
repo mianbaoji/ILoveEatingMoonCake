@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -10,14 +10,24 @@
 
   <title>小型社团资金流动记录系统</title>
 
-  <!--dynamic table-->
-  <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-  <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css" />
+  <!--icheck-->
+  <link href="../js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+  <link href="../js/iCheck/skins/square/square.css" rel="stylesheet">
+  <link href="../js/iCheck/skins/square/red.css" rel="stylesheet">
+  <link href="../js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+  <!--dashboard calendar-->
+  <link href="../css/clndr.css" rel="stylesheet">
+
+  <!--Morris Chart CSS -->
+  <link rel="stylesheet" href="../js/morris-chart/morris.css">
 
   <!--common-->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/style-responsive.css" rel="stylesheet">
+
+
+
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -45,7 +55,7 @@
         <div class="left-side-inner" style="font-family:微软雅黑">
 
             <!-- visible to small devices only -->
-
+			
             <div class="visible-xs hidden-sm hidden-md hidden-lg">
                 <div class="media logged-user">
                     <img alt="" src="../images/photos/user2.png" class="media-object">
@@ -63,12 +73,12 @@
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                 <li><a href="person-account.html"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
-                <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a href="activity-manage.php"> 我管理的活动</a></li>
-                        <li><a href="activity-join.php"> 我参与的活动</a></li>
+                        <li><a href="activity-manage.html"> 我管理的活动</a></li>
+                        <li><a href="activity-join.html"> 我参与的活动</a></li>
                         <li><a href="activity-new.html"> 申请活动</a></li>
-						<li><a href="activity-approving.php">审核中的活动</a></li>
+						<li><a href="activity-approving.html">审核中的活动</a></li>
 
                     </ul>
                 </li>
@@ -84,7 +94,7 @@
         </div>
     </div>
     <!-- left side end-->
-
+    
     <!-- main content start-->
     <div class="main-content" >
 
@@ -140,20 +150,7 @@
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <img src="../images/photos/user2.png" alt="" />
-                            <?php
-                            $link = mysqli_connect('localhost', 'root', '', 'odb');
-                            mysqli_query($link,'set names utf8');
-
-                            if(!session_id())
-                                session_start();
-                            if(isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                $nowuserid=$_SESSION['userid'];
-                            //echo $nowuserid;
-                            $sql3 = "select `username` from `user` where id = $nowuserid ";
-                            $result3 = mysqli_query($link, $sql3);
-                            @$row3 = mysqli_fetch_row($result3);
-                            echo $row3[0];
-                            ?>
+                            月饼小姐
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
@@ -171,131 +168,56 @@
 
         <!-- page heading start -->
         <div class="page-heading" style="font-family:微软雅黑">
-
+            
         </div>
         <!-- page heading end -->
 
         <!--body wrapper start -->
-		<div class="wrapper" style="font-family:微软雅黑">
+		<div class="wrapper" style="font-family:微软雅黑">                             
 			<div class="row">
-                <div class="col-sm-12">
-                    <section class="panel">
-                        <header class="panel-heading" charset="utf-8">
-                            我管理的活动
-                        </header>
-                        <div class="panel-body">
-							<div class="adv-table">
-                            <table class="display table table-hover" id="dynamic-table">
-                                <thead>
-                                <tr>
-                                    <th> 活动名称</th>
-                                    <th class="hidden-phone">活动简述</th>
-                                    <th>开始时间</th>
-                                    <th>状态</th>
-									<th>负责人</th>
-                                </tr>
-                                </thead>
-
-
-                                <tbody>
-                                <?php
-                                //每循环一次，取一行数据记录显示在一行中
-
-                                $link = mysqli_connect('localhost', 'root', '', 'odb');
-                                mysqli_query($link,'set names utf8');
-
-                                if(!session_id())
-                                    session_start();
-                                if(isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                    $nowuserid=$nowuserid=$_SESSION['userid'];
-
-                                $sql = "select * from activity where responsibility=$nowuserid ";
-                                $result = mysqli_query($link, $sql);
-                                $row=mysqli_fetch_row($result);
-                                while($row){
-                                ?>
-                                <tr style="background-color:#fff">
-                                    <!-- 连接数据库 -->
-
-                                    <td>
-                                        <a href="#">
-                                            <?php
-                                            echo $row[1];
-                                            ?>
-                                        </a>
-                                    </td>
-                                    <td class="hidden-phone">
-                                        <?php
-                                        echo $row[5];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                        echo $row[3];
-                                        ?>
-                                    </td>
-                                    <td><span class="label label-warning label-mini">
-                                        <?php
-                                        if($row[6]==0)
-                                            echo "待审批";
-                                        else if($row[6]==1)
-                                            echo "已开始";
-                                        else if($row[6]==2)
-                                            echo "已结束";
-                                        ?>
-                                    </span></td>
-                                    <td>
-                                        <?php
-
-                                            $sql2 = "select `username` from user where id=$nowuserid ";
-                                            $result2 = mysqli_query($link, $sql2);
-                                            $row2 = mysqli_fetch_row($result2);
-                                            echo $row2[0];
-
-                                        ?>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <?php
-                                $row=mysqli_fetch_row($result);
-                                }
-                                ?>
-
-
-								<tbody>
-								<tr style="background-color:#fff">
-                                    <td>
-                                        <a href="#">
-                                            聚餐
-                                        </a>
-                                    </td>
-                                    <td class="hidden-phone">聚餐吧啦吧啦...</td>
-                                    <td>2016-09-06 </td>
-                                    <td><span class="label label-warning label-mini">进行中</span></td>
-									<td>月饼小姐</td>
-                                </tr>
-                                <tr style="background-color:#fff">
-                                    <td>
-                                        <a href="#">
-                                            春游
-                                        </a>
-                                    </td>
-                                    <td class="hidden-phone">春游吧啦吧啦...</td>
-                                    <td>2016-09-01 </td>
-                                    <td><span class="label label-success label-mini">已结束</span></td>
-									<td>月饼小姐</td>
-                                </tr>
-								</tbody>
-                            </table>
-							</div>
-						</div>
-                    </section>
+                <div class="col-md-12">
+                    <!--statistics start-->
+                    <div class="row state-overview">
+                        <div class="col-md-4 col-xs-12 col-sm-4">
+                            <div class="panel purple">
+                                <div class="symbol">
+                                    <i class="fa fa-flag"></i>
+                                </div>
+                                <div class="state-value">
+                                    <div class="value">1</div><!--此处为我管理的数量-->
+                                    <div class="title"> 我管理的活动</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12 col-sm-4">
+                            <div class="panel red">
+                                <div class="symbol">
+                                    <i class="fa fa-tags"></i>
+                                </div>
+                                <div class="state-value">
+                                    <div class="value">2</div><!--此处为我参与活动的数量-->
+                                    <div class="title"> 我参与的活动</div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-md-4 col-xs-12 col-sm-4">
+                            <div class="panel blue">
+                                <div class="symbol">
+                                    <i class="fa fa-edit"></i>
+                                </div>
+                                <div class="state-value">
+                                    <div class="value">0</div><!--此处为审核中活动的数量-->
+                                    <div class="title"> 审核中的活动</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--statistics end-->
                 </div>
-            </div>
-
+			</div>
         </div>
         <!-- body wrapper end-->
-
+		
 
         <!--footer section start-->
         <footer>
@@ -308,7 +230,7 @@
     <!-- main content end-->
 </section>
 
-<!-- 以下是js -->
+<!-- Placed js at the end of the document so the pages load faster -->
 <script src="../js/jquery-1.10.2.min.js"></script>
 <script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="../js/jquery-migrate-1.2.1.min.js"></script>
@@ -316,14 +238,40 @@
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
 
-<!--dynamic table-->
-<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
-<!--dynamic table initialization -->
-<script src="../js/dynamic_table_init.js"></script>
+<!--easy pie chart-->
+<script src="../js/easypiechart/jquery.easypiechart.js"></script>
+<script src="../js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="../js/sparkline/jquery.sparkline.js"></script>
+<script src="../js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="../js/iCheck/jquery.icheck.js"></script>
+<script src="../js/icheck-init.js"></script>
+
+<!-- jQuery Flot Chart-->
+<script src="../js/flot-chart/jquery.flot.js"></script>
+<script src="../js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="../js/flot-chart/jquery.flot.resize.js"></script>
+
+
+<!--Morris Chart-->
+<script src="../js/morris-chart/morris.js"></script>
+<script src="../js/morris-chart/raphael-min.js"></script>
+
+<!--Calendar-->
+<script src="../js/calendar/clndr.js"></script>
+<script src="../js/calendar/evnt.calendar.init.js"></script>
+<script src="../js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>
+
+<!--Dashboard Charts-->
+<script src="../js/dashboard-chart-init.js"></script>
+
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="#" type="image/png">
 
   <title>小型社团资金流动记录系统</title>
-
+  
   <!--dynamic table-->
   <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
   <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
@@ -18,7 +18,7 @@
   <!--common-->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/style-responsive.css" rel="stylesheet">
-
+  
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="../js/html5shiv.js"></script>
@@ -45,7 +45,7 @@
         <div class="left-side-inner" style="font-family:微软雅黑">
 
             <!-- visible to small devices only -->
-
+			
             <div class="visible-xs hidden-sm hidden-md hidden-lg">
                 <div class="media logged-user">
                     <img alt="" src="../images/photos/user2.png" class="media-object">
@@ -65,10 +65,10 @@
                 <li><a href="person-account.html"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a href="activity-manage.php"> 我管理的活动</a></li>
+                        <li><a href="activity-manage.php"> 我管理的活动</a></li>
                         <li><a href="activity-join.php"> 我参与的活动</a></li>
                         <li><a href="activity-new.html"> 申请活动</a></li>
-						<li><a href="activity-approving.php">审核中的活动</a></li>
+						<li class="active"><a href="activity-approving.php">审核中的活动</a></li>
 
                     </ul>
                 </li>
@@ -84,7 +84,7 @@
         </div>
     </div>
     <!-- left side end-->
-
+    
     <!-- main content start-->
     <div class="main-content" >
 
@@ -171,17 +171,17 @@
 
         <!-- page heading start -->
         <div class="page-heading" style="font-family:微软雅黑">
-
+            
         </div>
         <!-- page heading end -->
 
         <!--body wrapper start -->
-		<div class="wrapper" style="font-family:微软雅黑">
+		<div class="wrapper" style="font-family:微软雅黑"> 
 			<div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
-                        <header class="panel-heading" charset="utf-8">
-                            我管理的活动
+                        <header class="panel-heading">
+                            审核中的活动
                         </header>
                         <div class="panel-body">
 							<div class="adv-table">
@@ -195,9 +195,8 @@
 									<th>负责人</th>
                                 </tr>
                                 </thead>
-
-
-                                <tbody>
+				
+								<tbody>
                                 <?php
                                 //每循环一次，取一行数据记录显示在一行中
 
@@ -207,16 +206,14 @@
                                 if(!session_id())
                                     session_start();
                                 if(isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                    $nowuserid=$nowuserid=$_SESSION['userid'];
+                                    $nowuserid=$_SESSION['userid'];
 
-                                $sql = "select * from activity where responsibility=$nowuserid ";
+                                $sql = "select * from activity where  responsibility = $nowuserid ";
                                 $result = mysqli_query($link, $sql);
                                 $row=mysqli_fetch_row($result);
                                 while($row){
                                 ?>
-                                <tr style="background-color:#fff">
-                                    <!-- 连接数据库 -->
-
+								<tr style="background-color:#fff">
                                     <td>
                                         <a href="#">
                                             <?php
@@ -235,55 +232,40 @@
                                         ?>
                                     </td>
                                     <td><span class="label label-warning label-mini">
+                                            <?php
+                                            if($row[6]==0)
+                                                echo "待审批";
+                                            else if($row[6]==1||$row[6]==2)
+                                                echo "已通过";
+                                            else if($row[6]==3)
+                                                echo "未通过";
+                                            ?>
+                                        </span></td>
+									<td>
                                         <?php
-                                        if($row[6]==0)
-                                            echo "待审批";
-                                        else if($row[6]==1)
-                                            echo "已开始";
-                                        else if($row[6]==2)
-                                            echo "已结束";
-                                        ?>
-                                    </span></td>
-                                    <td>
-                                        <?php
-
-                                            $sql2 = "select `username` from user where id=$nowuserid ";
-                                            $result2 = mysqli_query($link, $sql2);
-                                            $row2 = mysqli_fetch_row($result2);
-                                            echo $row2[0];
+                                        $sql3 = "select `username` from `user` where id = $nowuserid ";
+                                        $result3 = mysqli_query($link, $sql3);
+                                        @$row3 = mysqli_fetch_row($result3);
+                                        echo $row3[0];
 
                                         ?>
                                     </td>
                                 </tr>
-                                </tbody>
-                                <?php
-                                $row=mysqli_fetch_row($result);
+                                    <?php
+                                    $row=mysqli_fetch_row($result);
                                 }
                                 ?>
 
-
-								<tbody>
 								<tr style="background-color:#fff">
                                     <td>
                                         <a href="#">
-                                            聚餐
+                                            砍树
                                         </a>
                                     </td>
-                                    <td class="hidden-phone">聚餐吧啦吧啦...</td>
-                                    <td>2016-09-06 </td>
-                                    <td><span class="label label-warning label-mini">进行中</span></td>
-									<td>月饼小姐</td>
-                                </tr>
-                                <tr style="background-color:#fff">
-                                    <td>
-                                        <a href="#">
-                                            春游
-                                        </a>
-                                    </td>
-                                    <td class="hidden-phone">春游吧啦吧啦...</td>
+                                    <td class="hidden-phone">上月亮砍树吧啦吧啦...</td>
                                     <td>2016-09-01 </td>
-                                    <td><span class="label label-success label-mini">已结束</span></td>
-									<td>月饼小姐</td>
+                                    <td><span class="label label-danger label-mini">未通过</span></td>
+									<td>吴刚</td>
                                 </tr>
 								</tbody>
                             </table>
@@ -292,10 +274,10 @@
                     </section>
                 </div>
             </div>
-
+			
         </div>
         <!-- body wrapper end-->
-
+		
 
         <!--footer section start-->
         <footer>
