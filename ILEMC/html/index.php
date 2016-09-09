@@ -78,7 +78,7 @@
                         <li><a href="activity-manage.php"> 我管理的活动</a></li>
                         <li><a href="activity-join.php"> 我参与的活动</a></li>
                         <li><a href="activity-new.html"> 申请活动</a></li>
-						<li><a href="activity-approving.html">审核中的活动</a></li>
+						<li><a href="activity-approving.php">审核中的活动</a></li>
 
                     </ul>
                 </li>
@@ -154,11 +154,12 @@
                             $link = mysqli_connect('localhost', 'root', '', 'odb');
                             mysqli_query($link,'set names utf8');
 
+
+                            //echo $nowuserid;if(!session_id())
                             if(!session_id())
                                 session_start();
                             if(isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                $nowuserid=$_SESSION['userid'];
-                            //echo $nowuserid;
+                                @$nowuserid=$_SESSION['userid'];
                             $sql3 = "select `username` from `user` where id = $nowuserid ";
                             $result3 = mysqli_query($link, $sql3);
                             @$row3 = mysqli_fetch_row($result3);
@@ -168,7 +169,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="person-info.html"><i class="fa fa-user"></i>  个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -199,7 +200,13 @@
                                 <div class="state-value">
                                     <div class="value">
                                         <?php
-
+                                        $sql2="select count(*) from `activity` where responsibility=$nowuserid";
+                                        $result2 = mysqli_query($link, $sql2);
+                                        @$row2=mysqli_fetch_row($result2);
+                                        if(!$row2){
+                                            $row2[0]="0";
+                                        }
+                                        echo $row2[0];
                                         ?>
                                     </div><!--此处为我管理的数量-->
                                     <div class="title"> 我管理的活动</div>
@@ -212,7 +219,17 @@
                                     <i class="fa fa-tags"></i>
                                 </div>
                                 <div class="state-value">
-                                    <div class="value">2</div><!--此处为我参与活动的数量-->
+                                    <div class="value">
+                                        <?php
+                                        $sql2="select count(*) from `activity-participant` where userid=$nowuserid";
+                                        $result2 = mysqli_query($link, $sql2);
+                                        @$row2=mysqli_fetch_row($result2);
+                                        if(!$row2){
+                                            $row2[0]="0";
+                                        }
+                                        echo $row2[0];
+                                        ?>
+                                    </div><!--此处为我参与活动的数量-->
                                     <div class="title"> 我参与的活动</div>
                                 </div>
                             </div>
@@ -223,7 +240,17 @@
                                     <i class="fa fa-edit"></i>
                                 </div>
                                 <div class="state-value">
-                                    <div class="value">0</div><!--此处为审核中活动的数量-->
+                                    <div class="value">
+                                        <?php
+                                        $sql2="select count(*) from `activity` where responsibility=$nowuserid and state=0";
+                                        $result2 = mysqli_query($link, $sql2);
+                                        @$row2=mysqli_fetch_row($result2);
+                                        if(!$row2){
+                                            $row2[0]="0";
+                                        }
+                                        echo $row2[0];
+                                        ?>
+                                    </div><!--此处为审核中活动的数量-->
                                     <div class="title"> 审核中的活动</div>
                                 </div>
                             </div>

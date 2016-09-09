@@ -166,7 +166,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="b-person-info.html"><i class="fa fa-user"></i>  个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -213,7 +213,7 @@
 
                                 $sql = "select * from activity  ";
                                 $result = mysqli_query($link, $sql);
-                                $row=mysqli_fetch_row($result);
+                                @$row=mysqli_fetch_row($result);
                                 while($row){
                                     ?>
 								<tr style="background-color:#fff">
@@ -249,7 +249,7 @@
                                         <?php
                                         $sql2 = "select `username` from user where id=$row[2] ";
                                         $result2 = mysqli_query($link, $sql2);
-                                        $row2 = mysqli_fetch_row($result2);
+                                        @$row2 = mysqli_fetch_row($result2);
                                         echo $row2[0];
                                         ?>
                                     </td>

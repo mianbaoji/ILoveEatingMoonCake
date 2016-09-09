@@ -35,6 +35,7 @@
             <input type="password" class="form-control" name="psw" placeholder="密码">
 
             <?php
+            session_destroy();
             if($_POST)
             {
                 $phone = $_POST['phone'];

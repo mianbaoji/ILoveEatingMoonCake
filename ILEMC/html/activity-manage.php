@@ -56,7 +56,7 @@
 
                 <ul class="nav nav-pills nav-stacked custom-nav">
                   <li><a href="person-info.html"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
-                  <li><a href="../login.html"><i class="fa fa-sign-out"></i> <span>注销登陆</span></a></li>
+                  <li><a href="../login.php"><i class="fa fa-sign-out"></i> <span>注销登陆</span></a></li>
                 </ul>
             </div>
 
@@ -158,7 +158,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="person-info.html"><i class="fa fa-user"></i>  个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
