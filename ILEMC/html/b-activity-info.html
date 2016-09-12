@@ -9,7 +9,12 @@
   <link rel="shortcut icon" href="#" type="image/png">
 
   <title>小型社团资金流动记录系统</title>
-
+ 
+  <!--data table-->
+  <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+  <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css" />
+  
   <!--common-->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/style-responsive.css" rel="stylesheet">
@@ -164,8 +169,7 @@
 
         <!-- page heading start -->
         <div class="page-heading" style="font-family:微软雅黑">
-            
-        </div>
+		</div>
         <!-- page heading end -->
 
         <!--body wrapper start -->
@@ -173,12 +177,191 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<section class="panel">
-						<header class="panel-heading">
-							<!--此处应为跳转过来的页面，根据实际修改href和文本-->
-							<a href="b-activity-manage.html" style="text-decoration:none">我管理的活动</a> > 活动详情
+						<header class="panel-heading custom-tab turquoise-tab">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a data-toggle="tab" href="#info">
+										<i class="fa fa-home"></i>
+										活动详情
+									</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#account">
+										<i class="fa fa-book"></i>
+										活动账目
+									</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#members">
+										<i class="fa fa-users"></i>
+										小组成员
+									</a>
+								</li>
+							</ul>
 						</header>
 						<div class="panel-body">
-							
+							<div class="tab-content">
+								<div id="info" class="tab-pane  active">
+									<div class="row">
+										<div class="col-md-4">
+											<ul class="p-info">
+												<li>
+													<div class="title">负责人</div>
+													<div class="desk">月饼小姐</div>
+												</li>
+												<li>
+													<div class="title">开始时间</div>
+													<div class="desk">2016.09.10</div>
+												</li>
+												<li>
+													<div class="title">结束时间</div>
+													<div class="desk">2016.09.12</div><!--若尚未结束此处用两个横杠“--”代替-->
+												</li>
+												<li>
+													<div class="title">状态</div>
+													<div class="desk"><span class="label label-danger">已结束</span></div><!--如果状态是进行中，则label-danger改为label-warning-->
+												</li>
+											</ul>
+										</div>
+										<div class="col-md-8">
+											<p style="font-size:18px"><strong>一起上月亮砍树</strong></p><!--活动名称，下面是内容-->
+											<p style="padding-top:10px">今年中秋月色这么地好...号召全实验室呢一起上月亮砍树，砍下来的树呢可以当柴火烧玉兔吃。一定很美味。望组织批准我们这个淳朴的活动。</p>
+										</div>
+									</div>
+								</div>
+								<div id="account" class="tab-pane">
+									<section class="panel">
+										<header class="panel-heading">
+											活动总账
+											<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
+										</header>
+										<div class="panel-body">
+											<!--小boss且项目正在进行中用这个表格，从这里开始-->
+											<!--更换表格请通过下列一行中style里的display.'display:none'表示隐藏；'display:block'表示显示-->
+											<div class="adv-table editable-table" style="display:block">
+												<div class="clearfix">
+													<div class="btn-group">
+														<button id="editable-sample_new" class="btn btn-primary">
+															新增<i class="fa fa-plus"></i>
+														</button>
+													</div>
+												</div>
+												<div class="space15">
+													<table class="table table-bordered" id="info-editable">
+														<thead>
+															<tr>
+																<th>物品名称</th>
+																<th>价格</th>
+																<th>数量</th>
+																<th>总价</th>
+																<th>备注</th>
+																<th>操作</th>
+																<th>操作</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr class="">
+																<td>月饼</td>
+																<td>300</td>
+																<td>5</td>
+																<td>1500</td>
+																<td>一人一盒</td>
+																<td><a class="edit" href="javascript:;">编辑</a></td>
+																<td><a class="delete" href="javascript:;">删除</a></td>
+															</tr>
+															<tr class="">
+																<td>月饼</td>
+																<td>300</td>
+																<td>5</td>
+																<td>1500</td>
+																<td>一人一盒</td>
+																<td><a class="edit" href="javascript:;">编辑</a></td>
+																<td><a class="delete" href="javascript:;">删除</a></td>
+															</tr>
+															<tr class="">
+																<td>月饼</td>
+																<td>300</td>
+																<td>5</td>
+																<td>1500</td>
+																<td>一人一盒</td>
+																<td><a class="edit" href="javascript:;">编辑</a></td>
+																<td><a class="delete" href="javascript:;">删除</a></td>
+															</tr>
+															<tr class="">
+																<td>月饼</td>
+																<td>300</td>
+																<td>5</td>
+																<td>1500</td>
+																<td>一人一盒</td>
+																<td><a class="edit" href="javascript:;">编辑</a></td>
+																<td><a class="delete" href="javascript:;">删除</a></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!--小组长表格到这里结束-->
+											<!--普通用户的表格和结束项目的表格，从这里开始-->
+											<div class="adv-table" style="display:none">
+												<table class="display table table-bordered" id="dynamic-table">
+													<thead>
+														<tr>
+															<th>物品名称</th>
+															<th>价格</th>
+															<th>数量</th>
+															<th>总价</th>
+															<th>备注</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+														</tr>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+														</tr>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+														</tr>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!--到这里结束-->
+										</div>
+									</section>
+									<section class="panel">
+										<header class="panel-heading">
+											个人总账
+											<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
+										</header>
+										<div class="panel-body">
+											
+										</div>
+									</section>
+								</div>
+								<div id="members" class="tab-pane">
+									
+								</div>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -206,8 +389,28 @@
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
 
+<!--data table-->
+<script type="text/javascript" src="../js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
+
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>
+
+<!--script for editable table-->
+<script src="../js/info-editable.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="../js/dynamic_table_init.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        InfoEditable.init();
+    });
+</script>
 
 </body>
 </html>

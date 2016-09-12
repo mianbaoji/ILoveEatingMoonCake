@@ -10,11 +10,6 @@
 
   <title>小型社团资金流动记录系统</title>
 
-  <!--dynamic table-->
-  <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-  <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css" />
-
   <!--common-->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/style-responsive.css" rel="stylesheet">
@@ -63,7 +58,7 @@
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                 <li><a href="b-person-account.html"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
-                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="b-activity-manage.html"> 我管理的活动</a></li>
                         <li><a href="b-activity-join.html"> 我参与的活动</a></li>
@@ -81,10 +76,10 @@
 
                 <li><a href="b-person-manage.html"><i class="fa fa-users"></i> <span>人员管理</span></a></li>
 
-                <li class="menu-list nav-active"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="b-account-all.html"> 查看账目</a></li>
-                        <li class="active"><a href="b-account-approve.html"> 审核账目</a></li>
+                        <li><a href="b-account-approve.html"> 审核账目</a></li>
                     </ul>
                 </li>
             </ul>
@@ -177,41 +172,38 @@
 				<div class="col-sm-12">
 					<section class="panel">
 						<header class="panel-heading">
-							待审核账目
+							<a href="b-activity-approve.html" style="text-decoration:none">审批活动</a> > 活动详情
 						</header>
 						<div class="panel-body">
-							<div class="adv-table">
-							<table class="display table table-hover" id="dynamic-table">
-								<thead>
-									<tr>
-										<th>活动名称</th>
-										<th>负责人</th>
-										<th>状态</th>
-										<th>开始时间</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr style="background-color:#fff">
-										<td><a href="b-account-info.html">聚餐</a></td>
-										<td>月饼小姐</td>
-										<!--label-danger:未通过;label-success:已通过;label-warning:待审核;此页面只展示待审核的账目-->
-										<td><span class="label label-warning label-mini">待审核</span></td>
-										<td>2016-09-06</td>
-									</tr>
-									<tr  style="background-color:#fff">
-										<td><a href="b-account-info.html">聚餐</a></td>
-										<td>月饼小姐</td>
-										<td><span class="label label-warning label-mini">待审核</span></td>
-										<td>2016-09-06</td>
-									</tr>
-									<tr  style="background-color:#fff">
-										<td><a href="b-account-info.html">聚餐</a></td>
-										<td>月饼小姐</td>
-										<td><span class="label label-warning label-mini">待审核</span></td>
-										<td>2016-09-06</td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="col-md-4">
+								<ul class="p-info">
+									<li>
+										<div class="title">负责人</div>
+										<div class="desk">月饼小姐</div>
+									</li>
+									<li>
+										<div class="title">开始时间</div>
+										<div class="desk">2016.09.10</div>
+									</li>
+									<li>
+										<div class="title">结束时间</div>
+										<div class="desk">--</div><!--若没有结束时间此处用两个横杠“--”代替-->
+									</li>
+									<li>
+										<div class="title">状态</div>
+										<div class="desk"><span class="label label-danger">未通过</span></div><!--如果状态是待审核，则label-danger改为label-warning;已通过-label-success;-->
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-8">
+								<p style="font-size:18px"><strong>一起上月亮砍树</strong></p><!--活动名称，下面是内容-->
+								<p style="padding-top:10px">今年中秋月色这么地好...号召全实验室呢一起上月亮砍树，砍下来的树呢可以当柴火烧玉兔吃。一定很美味。望组织批准我们这个淳朴的活动。</p>
+								<!--待审核状态专有，从这里开始。通过style中display的值来控制。display:none-隐藏;display:block-显示-->
+								<div class="col-sm-12" style="display:block; margin-top:20px;">
+									<button type="submit" style="float:right;" class="btn btn-primary">驳回</button>
+									<button type="submit" style="float:right; margin-right:20px;" class="btn btn-default">通过</button>
+								</div>
+								<!--到这里结束-->
 							</div>
 						</div>
 					</section>
@@ -239,12 +231,6 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
-
-<!--dynamic table-->
-<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
-<!--dynamic table initialization -->
-<script src="../js/dynamic_table_init.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>

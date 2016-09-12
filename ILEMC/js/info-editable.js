@@ -1,4 +1,4 @@
-var EditableTable = function () {
+﻿var InfoEditable = function () {
 
     return {
 
@@ -22,10 +22,11 @@ var EditableTable = function () {
                 jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
                 jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
-                jqTds[4].innerHTML = '<a class="save" href="">保存</a>';
-                jqTds[5].innerHTML = '<a class="cancel" data-mode="new" href="">取消</a>';
+				jqTds[4].innerHTML = '<input type="text" class="form-control small" value="' + aData[4] + '">';
+                jqTds[5].innerHTML = '<a class="save" href="">保存</a>';
+                jqTds[6].innerHTML = '<a class="cancel" data-mode="new" href="">取消</a>';
             }
-			
+
 			//编辑
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
@@ -34,8 +35,9 @@ var EditableTable = function () {
                 jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
                 jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
-                jqTds[4].innerHTML = '<a class="save" href="">保存</a>';
-                jqTds[5].innerHTML = '<a class="cancel" href="">取消</a>';
+				jqTds[4].innerHTML = '<input type="text" class="form-control small" value="' + aData[4] + '">';
+                jqTds[5].innerHTML = '<a class="save" href="">保存</a>';
+                jqTds[6].innerHTML = '<a class="cancel" href="">取消</a>';
             }
 
 			//保存
@@ -45,25 +47,13 @@ var EditableTable = function () {
                 oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
                 oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
                 oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 4, false);
-                oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 5, false);
+				oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+                oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 5, false);
+                oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 6, false);
                 oTable.fnDraw();
             }
-
-			/***
-            function cancelEditRow(oTable, nRow) {
-                var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 4, false);
-				oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 5, false);
-                oTable.fnDraw();
-            }
-			***/
-
-            var oTable = $('#editable-sample').dataTable({
+		
+            var oTable = $('#info-editable').dataTable({
                 "aLengthMenu": [
                     [5, 15, 20, -1],
                     [5, 15, 20, "All"] // 每页显示数值
@@ -94,7 +84,7 @@ var EditableTable = function () {
 			//新增函数
             $('#editable-sample_new').click(function (e) {
                 e.preventDefault();
-                var aiNew = oTable.fnAddData(['', '', '', '',
+                var aiNew = oTable.fnAddData(['', '', '', '', '',
                         '<a class="edit" href="">编辑</a>', '<a class="delete" href="">删除</a>'
                 ]);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
@@ -103,7 +93,7 @@ var EditableTable = function () {
             });
 
 			//删除函数
-            $('#editable-sample a.delete').live('click', function (e) {
+            $('#info-editable a.delete').live('click', function (e) {
                 e.preventDefault();
 
                 if (confirm("是否确定删除？") == false) {
@@ -116,7 +106,7 @@ var EditableTable = function () {
             });
 
 			//取消函数
-            $('#editable-sample a.cancel').live('click', function (e) {
+            $('#info-editable a.cancel').live('click', function (e) {
                 e.preventDefault();
                 if ($(this).attr("data-mode") == "new") {
                     var nRow = $(this).parents('tr')[0];
@@ -128,7 +118,7 @@ var EditableTable = function () {
             });
 			
 			//保存函数
-			$('#editable-sample a.save').live('click', function(e) {
+			$('#info-editable a.save').live('click', function(e) {
 				e.preventDefault();
 
                 //获取行
@@ -148,7 +138,7 @@ var EditableTable = function () {
 			});
 
 			//编辑函数
-            $('#editable-sample a.edit').live('click', function (e) {
+            $('#info-editable a.edit').live('click', function (e) {
                 e.preventDefault();
 				
 				var nRow = $(this).parents('tr')[0];
