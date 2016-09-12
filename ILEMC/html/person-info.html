@@ -169,7 +169,7 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-								<ul class="p-info" style="padding-top:40px;">
+								<ul class="p-info" style="padding-top:20px;">
 									<li>
 										<div class="title">姓名</div>
 										<div class="desk">月饼小姐</div>
@@ -182,20 +182,91 @@
 										<div class="title">邮箱</div>
 										<div class="desk">mooncake@bit.edu.cn</div>
 									</li>
+									<li>
+										<div class="title">权限</div>
+										<div class="desk">普通用户</div>
+									</li>
 								</ul>
 							</div>
 							<div class="col-md-2">
 								<ul class="p-info" style="padding-top:40px;">
 									<li>
 										<i class="fa fa-user" style="padding-right:5px"></i>
-										<a href="#" style="text-decoration:none">编辑资料</a>
+										<a href="#perModal" data-toggle="modal" style="text-decoration:none">编辑资料</a>
 									</li>
 									<li>
 										<i class="fa fa-pencil" style="padding-right:5px"></i>
-										<a href="#" style="text-decoration:none">修改密码</a>
+										<a href="#pswModal" data-toggle="modal" style="text-decoration:none">修改密码</a>
 									</li>
 								</ul>
 							</div>
+							
+							<!-- Modal Start -->
+							<!-- 此处为编辑资料弹出框 -->
+							<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="perModal" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title">编辑资料</h4>
+										</div>
+										<div class="modal-body">
+											<div class="form-group">
+												<label>姓名</label>
+												<input id="name" value="月饼小姐" class="form-control"/>
+												<!--value当中的值为修改前的用户名，请根据数据库数据修改-->
+											</div>
+											<div class="form-group">
+												<label>手机号码</label>
+												<input id="phoneNumbers" value="188****0000" class="form-control"/>
+												<!--value当中的值为修改前的手机号码，请根据数据库数据修改-->
+											</div>
+											<div class="form-group">
+												<label>邮箱</label>
+												<input id="email" value="mooncake@bit.edu.cn" class="form-control"/>
+												<!--value当中的值为修改前的邮箱，请根据数据库数据修改-->
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+											<button data-dismiss="modal" class="btn btn-primary" type="button">确定</button>
+											<!--data-dismiss="modal"的功能是关闭弹出框，回到原页面，根据实现功能的需要，可去。-->
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!--此为修改密码弹出框-->
+							<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="pswModal" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title">修改资料</h4>
+										</div>
+										<div class="modal-body">
+											<div class="form-group">
+												<label>请输入旧密码</label>
+												<input type="password" id="psw" class="form-control"/>
+											</div>
+											<div class="form-group">
+												<label>请输入新密码</label>
+												<input type="password" id="newpsw" class="form-control"/>
+											</div>
+											<div class="form-group">
+												<label>请确认新密码</label>
+												<input type="password" id="newpsw2" class="form-control"/>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+											<button data-dismiss="modal" class="btn btn-primary" type="button">确定</button>
+											<!--data-dismiss="modal"的功能是关闭弹出框，回到原页面，根据实现功能的需要，可去。-->
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Modal End -->
 						</div>
 					</div>
 				</div>
