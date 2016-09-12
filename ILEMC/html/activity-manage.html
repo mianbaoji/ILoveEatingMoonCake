@@ -65,8 +65,8 @@
                 <li><a href="person-account.html"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a href="activity-manage.html"> 我管理的活动</a></li>
-                        <li><a href="activity-join.html"> 我参与的活动</a></li>
+                        <li class="active"><a href="activity-manage.php"> 我管理的活动</a></li>
+                        <li><a href="activity-join.php"> 我参与的活动</a></li>
                         <li><a href="activity-new.html"> 申请活动</a></li>
 						<li><a href="activity-approving.html">审核中的活动</a></li>
 
@@ -182,7 +182,55 @@
 									<th>负责人</th>
                                 </tr>
                                 </thead>
-								
+
+                                <tbody>
+                                <tr style="background-color:#fff">
+                                <!-- 连接数据库 -->
+                                <?php
+                                    $link = mysqli_connect('localhost', 'root', '', 'odb');
+                                    $sql = "select * from activity where id=2 ";
+                                    $result = mysqli_query($link, $sql);
+                                    while($row=mysqli_fetch_row($result)){
+
+                                ?>
+                                <!--
+                                <tr>
+                                    <td><?php echo $row[0];?></td><td><?php echo $row[1];?></td>
+                                </tr>
+                                -->
+
+
+                                    <td>
+                                        <a href="#">
+                                            <?php
+                                               echo $row[0];
+                                            ?>
+                                        </a>
+                                    </td>
+                                    <td class="hidden-phone">
+                                        <?php
+                                               echo $row[4];
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                               echo $row[2];
+                                        ?>
+                                    </td>
+                                    <td><span class="label label-warning label-mini">
+                                        <?php
+                                               echo $row[5];
+                                        ?>
+                                    </span></td>
+                                    <td>月饼小姐</td>
+                                </tr>
+                                </tbody>
+                                <?php
+                                    }
+                                ?>
+
+
+
 								<tbody>
 								<tr style="background-color:#fff">
                                     <td>
