@@ -192,6 +192,7 @@
                 <div class="col-md-12">
                     <!--statistics start-->
                     <div class="row state-overview">
+						<a href="activity-manage.html" style="text-decoration:none; color:#fff;">
                         <div class="col-md-4 col-xs-12 col-sm-4">
                             <div class="panel purple">
                                 <div class="symbol">
@@ -213,6 +214,8 @@
                                 </div>
                             </div>
                         </div>
+						</a>
+						<a href="activity-join.html" style="text-decoration:none; color:#fff;">
                         <div class="col-md-4 col-xs-12 col-sm-4">
                             <div class="panel red">
                                 <div class="symbol">
@@ -234,6 +237,8 @@
                                 </div>
                             </div>
                         </div>
+						</a>
+						<a href="activity-approving.html" style="text-decoration:none; color:#fff;">
 						<div class="col-md-4 col-xs-12 col-sm-4">
                             <div class="panel blue">
                                 <div class="symbol">
@@ -255,6 +260,7 @@
                                 </div>
                             </div>
                         </div>
+						</a>
                     </div>
                     <!--statistics end-->
                 </div>
