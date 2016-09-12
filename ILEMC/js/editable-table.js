@@ -2,7 +2,6 @@ var EditableTable = function () {
 
     return {
 
-        //main function to initiate the module
         init: function () {
             function restoreRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
@@ -14,7 +13,20 @@ var EditableTable = function () {
 
                 oTable.fnDraw();
             }
+			
+			//新增
+			function newRow(oTable, nRow) {
+				var aData = oTable.fnGetData(nRow);
+                var jqTds = $('>td', nRow);
+                jqTds[0].innerHTML = '<input type="text" class="form-control small" value="' + aData[0] + '">';
+                jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
+                jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
+                jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
+                jqTds[4].innerHTML = '<a class="save" href="">保存</a>';
+                jqTds[5].innerHTML = '<a class="cancel" data-mode="new" href="">取消</a>';
+            }
 
+			//编辑
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
@@ -22,10 +34,11 @@ var EditableTable = function () {
                 jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
                 jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
-                jqTds[4].innerHTML = '<a class="edit" href="">保存</a>';
+                jqTds[4].innerHTML = '<a class="save" href="">保存</a>';
                 jqTds[5].innerHTML = '<a class="cancel" href="">取消</a>';
             }
 
+			//保存
             function saveRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
@@ -37,6 +50,7 @@ var EditableTable = function () {
                 oTable.fnDraw();
             }
 
+			/***
             function cancelEditRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
@@ -44,15 +58,17 @@ var EditableTable = function () {
                 oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
                 oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
                 oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 4, false);
+				oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 5, false);
                 oTable.fnDraw();
             }
+			***/
 
             var oTable = $('#editable-sample').dataTable({
                 "aLengthMenu": [
                     [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
+                    [5, 15, 20, "All"] // 每页显示数值
                 ],
-                // set the initial value
+                // 设值
                 "iDisplayLength": 5,
                 "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
                 "sPaginationType": "bootstrap",
@@ -70,21 +86,23 @@ var EditableTable = function () {
                 ]
             });
 
-            jQuery('#editable-sample_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
-            jQuery('#editable-sample_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+            jQuery('#editable-sample_wrapper .dataTables_filter input').addClass("form-control medium"); 
+            jQuery('#editable-sample_wrapper .dataTables_length select').addClass("form-control xsmall"); 
 
             var nEditing = null;
 
+			//新增函数
             $('#editable-sample_new').click(function (e) {
                 e.preventDefault();
                 var aiNew = oTable.fnAddData(['', '', '', '',
-                        '<a class="edit" href="">编辑</a>', '<a class="cancel" data-mode="new" href="">取消</a>'
+                        '<a class="edit" href="">编辑</a>', '<a class="delete" href="">删除</a>'
                 ]);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
-                editRow(oTable, nRow);
+                newRow(oTable, nRow);
                 nEditing = nRow;
             });
 
+			//删除函数
             $('#editable-sample a.delete').live('click', function (e) {
                 e.preventDefault();
 
@@ -97,6 +115,7 @@ var EditableTable = function () {
                 alert("已删除！");
             });
 
+			//取消函数
             $('#editable-sample a.cancel').live('click', function (e) {
                 e.preventDefault();
                 if ($(this).attr("data-mode") == "new") {
@@ -107,28 +126,36 @@ var EditableTable = function () {
                     nEditing = null;
                 }
             });
+			
+			//保存函数
+			$('#editable-sample a.save').live('click', function(e) {
+				e.preventDefault();
 
-            $('#editable-sample a.edit').live('click', function (e) {
-                e.preventDefault();
-
-                /* Get the row as a parent of the link that was clicked on */
+                //获取行
                 var nRow = $(this).parents('tr')[0];
 
                 if (nEditing !== null && nEditing != nRow) {
-                    /* Currently editing - but not this row - restore the old before continuing to edit mode */
+                    //保存编辑前行值
                     restoreRow(oTable, nEditing);
                     editRow(oTable, nRow);
                     nEditing = nRow;
                 } else if (nEditing == nRow && this.innerHTML == "保存") {
-                    /* Editing this row and want to save it */
+                    //保存
                     saveRow(oTable, nEditing);
                     nEditing = null;
                     alert("保存成功！");
-                } else {
-                    /* No edit in progress - let's start one */
-                    editRow(oTable, nRow);
-                    nEditing = nRow;
-                }
+                } 
+			});
+
+			//编辑函数
+            $('#editable-sample a.edit').live('click', function (e) {
+                e.preventDefault();
+				
+				var nRow = $(this).parents('tr')[0];
+                
+				//显示编辑行
+				editRow(oTable, nRow);
+                nEditing = nRow;
             });
         }
 
