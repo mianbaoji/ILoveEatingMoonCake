@@ -9,6 +9,14 @@
   <link rel="shortcut icon" href="#" type="image/png">
 
   <title>小型社团资金流动记录系统</title>
+  
+  <!--ios7-->
+  <link rel="stylesheet" type="text/css" href="../js/ios-switch/switchery.css" />
+
+  <!--icheck-->
+  <link href="../js/iCheck/skins/minimal/green.css" rel="stylesheet">
+  <link href="../js/iCheck/skins/square/green.css" rel="stylesheet">
+  <link href="../js/iCheck/skins/flat/green.css" rel="stylesheet">
  
   <!--data table-->
   <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
@@ -201,7 +209,7 @@
 						</header>
 						<div class="panel-body">
 							<div class="tab-content">
-								<div id="info" class="tab-pane  active">
+								<div id="info" class="tab-pane active">
 									<div class="row">
 										<div class="col-md-4">
 											<ul class="p-info">
@@ -230,80 +238,23 @@
 									</div>
 								</div>
 								<div id="account" class="tab-pane">
-									<section class="panel">
-										<header class="panel-heading">
-											活动总账
-											<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
-										</header>
-										<div class="panel-body">
-											<!--小boss且项目正在进行中用这个表格，从这里开始-->
-											<!--更换表格请通过下列一行中style里的display.'display:none'表示隐藏；'display:block'表示显示-->
-											<div class="adv-table editable-table" style="display:block">
-												<div class="clearfix">
-													<div class="btn-group">
-														<button id="editable-sample_new" class="btn btn-primary">
-															新增<i class="fa fa-plus"></i>
-														</button>
-													</div>
-												</div>
-												<div class="space15">
-													<table class="table table-bordered" id="info-editable">
-														<thead>
-															<tr>
-																<th>物品名称</th>
-																<th>价格</th>
-																<th>数量</th>
-																<th>总价</th>
-																<th>备注</th>
-																<th>操作</th>
-																<th>操作</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr class="">
-																<td>月饼</td>
-																<td>300</td>
-																<td>5</td>
-																<td>1500</td>
-																<td>一人一盒</td>
-																<td><a class="edit" href="javascript:;">编辑</a></td>
-																<td><a class="delete" href="javascript:;">删除</a></td>
-															</tr>
-															<tr class="">
-																<td>月饼</td>
-																<td>300</td>
-																<td>5</td>
-																<td>1500</td>
-																<td>一人一盒</td>
-																<td><a class="edit" href="javascript:;">编辑</a></td>
-																<td><a class="delete" href="javascript:;">删除</a></td>
-															</tr>
-															<tr class="">
-																<td>月饼</td>
-																<td>300</td>
-																<td>5</td>
-																<td>1500</td>
-																<td>一人一盒</td>
-																<td><a class="edit" href="javascript:;">编辑</a></td>
-																<td><a class="delete" href="javascript:;">删除</a></td>
-															</tr>
-															<tr class="">
-																<td>月饼</td>
-																<td>300</td>
-																<td>5</td>
-																<td>1500</td>
-																<td>一人一盒</td>
-																<td><a class="edit" href="javascript:;">编辑</a></td>
-																<td><a class="delete" href="javascript:;">删除</a></td>
-															</tr>
-														</tbody>
-													</table>
+									<header class="panel-heading">
+										活动总账
+										<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
+									</header>
+									<div class="panel-body">
+										<!--小boss且项目正在进行中用这个表格，从这里开始-->
+										<!--更换表格请通过下列一行中style里的display.'display:none'表示隐藏；'display:block'表示显示-->
+										<div class="adv-table editable-table" style="display:block">
+											<div class="clearfix">
+												<div class="btn-group">
+													<button id="editable-sample_new" class="btn btn-primary">
+														新增<i class="fa fa-plus"></i>
+													</button>
 												</div>
 											</div>
-											<!--小组长表格到这里结束-->
-											<!--普通用户的表格和结束项目的表格，从这里开始-->
-											<div class="adv-table" style="display:none">
-												<table class="display table table-bordered" id="dynamic-table">
+											<div class="space15">
+												<table class="table table-bordered" id="info-editable">
 													<thead>
 														<tr>
 															<th>物品名称</th>
@@ -311,6 +262,8 @@
 															<th>数量</th>
 															<th>总价</th>
 															<th>备注</th>
+															<th>操作</th>
+															<th>操作</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -320,6 +273,8 @@
 															<td>5</td>
 															<td>1500</td>
 															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
 														</tr>
 														<tr class="">
 															<td>月饼</td>
@@ -327,6 +282,8 @@
 															<td>5</td>
 															<td>1500</td>
 															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
 														</tr>
 														<tr class="">
 															<td>月饼</td>
@@ -334,6 +291,8 @@
 															<td>5</td>
 															<td>1500</td>
 															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
 														</tr>
 														<tr class="">
 															<td>月饼</td>
@@ -341,25 +300,148 @@
 															<td>5</td>
 															<td>1500</td>
 															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
 														</tr>
 													</tbody>
 												</table>
 											</div>
-											<!--到这里结束-->
 										</div>
-									</section>
-									<section class="panel">
+										<!--小组长表格到这里结束-->
+										<!--普通用户的表格和结束项目的表格，从这里开始-->
+										<div class="adv-table" style="display:none">
+											<table class="display table table-bordered" id="dynamic-table">
+												<thead>
+													<tr>
+														<th>物品名称</th>
+														<th>价格</th>
+														<th>数量</th>
+														<th>总价</th>
+														<th>备注</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+														</tr>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+													</tr>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+													</tr>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<!--到这里结束-->
+									</div>
+									<!--活动组长的个人总账从这里开始，请用display:none和display:block控制隐藏和显示-->
+									<div class="panel">
 										<header class="panel-heading">
 											个人总账
 											<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
 										</header>
 										<div class="panel-body">
-											
+										
 										</div>
-									</section>
+									</div>
+									<!--到这里结束-->
+									<!--小组成员的个人总账从这里开始，请用display:none和display:block控制隐藏和显示-->
+									<div class="panel">
+										<header class="panel-heading">
+											个人总账
+										</header>
+										<div class="panel-body">
+										
+										</div>
+									</div>
+									<!--到这里结束-->
 								</div>
 								<div id="members" class="tab-pane">
-									
+									<div class="row">
+										<div class="col-sm-12">
+											<header class="panel-heading">
+												活动组长
+											</header>
+											<div class="panel-body">
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月饼小姐</label>
+												</div>
+											</div>
+											<header class="panel-heading">
+												小组成员
+												<!--若非组长进入这个页面，请隐藏添加和删除按钮。用display:none隐藏;display:block显示-->
+												<!--点击此处的删除按钮时，每个用户前面出现选择框，见第一个例子-->
+												<button class="btn btn-primary" style="float:right; padding:3px 10px;">添加</button>
+												<button class="btn btn-default" style="float:right; padding:3px 10px; margin-right:10px;">删除</button>
+											</header>
+											<div class="panel-body">
+												<div class="use">
+													<input type="checkbox"><!--此为选择框语句，一般不可见，点击删除按钮时每个用户前面都添加一个选择框-->
+													<img src="../images/photos/user2.png" alt="">
+													<label>月亮小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月球小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月星小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月光小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月明小姐</label>
+												</div>
+												<!--默认此div的display:none;即为隐藏;当点击小组成员中的删除按钮时变为display:block;点击此列表下的删除或取消按钮时，又变为display:none;请用php实现-->
+												<div style="clear:both; padding-top:10px; display:none">
+													<button class="btn btn-primary" style="padding:3px 10px; margin-right:10px;">删除</button>
+													<button class="btn btn-default" style="padding:3px 10px;">取消</button>
+												</div>
+											</div>
+											<!--默认此div的display:none;即为隐藏;当点击小组成员中的添加按钮时变为display:block;点击此列表下的添加或取消按钮时，又变为display:none;请用php实现-->
+											<div style="display:none">
+											<header class="panel-heading">
+												用户列表
+											</header>
+											<div class="panel-body">
+												<div class="use">
+													<input type="checkbox">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月亮小姐</label>
+												</div>
+												<div style="clear:both; padding-top:10px;">
+													<button class="btn btn-primary" style="padding:3px 10px; margin-right:10px;">添加</button>
+													<button class="btn btn-default" style="padding:3px 10px;">取消</button>
+												</div>
+											</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -392,6 +474,14 @@
 <!--data table-->
 <script type="text/javascript" src="../js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
+
+<!--ios7-->
+<script src="../js/ios-switch/switchery.js" ></script>
+<script src="../js/ios-switch/ios-init.js" ></script>
+
+<!--icheck -->
+<script src="../js/iCheck/jquery.icheck.js"></script>
+<script src="../js/icheck-init.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>
