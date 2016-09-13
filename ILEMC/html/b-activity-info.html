@@ -245,7 +245,7 @@
 									<div class="panel-body">
 										<!--小boss且项目正在进行中用这个表格，从这里开始-->
 										<!--更换表格请通过下列一行中style里的display.'display:none'表示隐藏；'display:block'表示显示-->
-										<div class="adv-table editable-table" style="display:block">
+										<div class="adv-table editable-table" style="display:none">
 											<div class="clearfix">
 												<div class="btn-group">
 													<button id="editable-sample_new" class="btn btn-primary">
@@ -309,7 +309,7 @@
 										</div>
 										<!--小组长表格到这里结束-->
 										<!--普通用户的表格和结束项目的表格，从这里开始-->
-										<div class="adv-table" style="display:none">
+										<div class="adv-table" style="display:blcok">
 											<table class="display table table-bordered" id="dynamic-table">
 												<thead>
 													<tr>
@@ -355,23 +355,97 @@
 										<!--到这里结束-->
 									</div>
 									<!--活动组长的个人总账从这里开始，请用display:none和display:block控制隐藏和显示-->
-									<div class="panel">
+									<div style="display:block">
 										<header class="panel-heading">
 											个人总账
 											<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
 										</header>
 										<div class="panel-body">
-										
+											<div class="adv-table" style="display:block">
+												<table class="table table-bordered">
+													<thead>
+														<tr>
+															<th>用户名</th>
+															<th>应收</th>
+															<th>状态</th>
+															<th>操作</th>
+															<th>操作</th>
+														</tr>
+													</thead>
+													<!--只有状态是待审核才可以触发“通过”和“驳回”两个点击-->
+													<tbody>
+														<tr class="">
+															<td>月饼小姐</td>
+															<td>300</td>
+															<td><span class="label label-danger label-mini">未通过</span></td>
+															<td><a href="#">通过</a></td>
+															<td><a href="#">驳回</a></td>
+														</tr>
+														<tr class="">
+															<td>月饼小姐</td>
+															<td>300</td>
+															<td><span class="label label-success label-mini">已通过</span></td>
+															<td><a href="#">通过</a></td>
+															<td><a href="#">驳回</a></td>
+														</tr>
+														<tr class="">
+															<td>月饼小姐</td>
+															<td>300</td>
+															<td><span class="label label-warning label-mini">待审核</span></td>
+															<td><a href="">通过</a></td>
+															<td><a href="">驳回</a></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</div>
 									<!--到这里结束-->
 									<!--小组成员的个人总账从这里开始，请用display:none和display:block控制隐藏和显示-->
-									<div class="panel">
+									<div style="display:none">
 										<header class="panel-heading">
 											个人总账
 										</header>
 										<div class="panel-body">
-										
+											<!--此处是小组成员没填写过或是填写过然后被驳回重新填写，从这里开始-->
+											<div class="p1" style="display:none;">
+												<div class="col-md-6">
+													<form class="form-horizontal" role="form">
+														<div class="form-group">
+															<label for="i" class="col-lg-2 col-sm-2 control-label">应收</label>
+															<div class="col-lg-10">
+																<input type="text" class="form-control" id="i">
+																<!--下列一行为重新填写专有-->
+																<p class="help-block">您的应收请求被驳回，请重新填写！</p>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="col-lg-offset-2 col-lg-10">
+																<button type="submit" class="btn btn-primary">提交</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+											<!--到这里结束-->
+											<!--此处是已填写待审核或已通过或者已收回-->
+											<div class="p2" style="display:block;">
+												<div class="col-md-3">
+													<ul class="p-info">
+														<li>
+															<div class="title">应收</div>
+															<div class="desk"><i class="fa fa-jpy"></i>300</div>
+														</li>
+														<li>
+															<div class="title">状态</div>
+															<div class="desk">已通过</div><!--待审核或已通过或已收回-->
+														</li>
+													</ul>
+													<!--只有状态是已通过，才有此按钮-->
+													<button type="submit" class="btn btn-primary" style="margin-top:10px;">确认已收回</button>
+												</div>
+											</div>
+											<!--到这里结束-->
 										</div>
 									</div>
 									<!--到这里结束-->
