@@ -2658,6 +2658,8 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
     margin-right: 10px;
 }
 
+
+
 /*----------------------------------------------
     CUSTOM CHECKBOX & RADIO BUTTONS STYLES
 ----------------------------------------------*/
@@ -2681,6 +2683,15 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 .icheck .single-row {
     display: inline-block;
     width: 100%;
+}
+
+.icheck .single-row .radio img{
+	width:25px;
+	height:25px;
+	border-radius:4px;
+    -webkit-border-radius:4px;
+	margin-left:10px;
+	margin-right:5px;
 }
 
 /*-------------------------

@@ -9,8 +9,14 @@
   <link rel="shortcut icon" href="#" type="image/png">
 
   <title>小型社团资金流动记录系统</title>
+  
+  <!--ios7-->
+  <link rel="stylesheet" type="text/css" href="../js/ios-switch/switchery.css" />
 
-  <link rel="stylesheet" type="text/css" href="../js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+  <!--icheck-->
+  <link href="../js/iCheck/skins/minimal/green.css" rel="stylesheet">
+  <link href="../js/iCheck/skins/square/green.css" rel="stylesheet">
+  <link href="../js/iCheck/skins/flat/green.css" rel="stylesheet">
 
   <!--common-->
   <link href="../css/style.css" rel="stylesheet">
@@ -171,17 +177,48 @@
         <!--body wrapper start -->
         <div class="wrapper" style="font-family:微软雅黑">                             
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<section class="panel">
 						<header class="panel-heading">
 							用户列表
 						</header>
 						<div class="panel-body">
-							
+							<form class="form-horizontal bucket-form" method="get">
+								<div class="icheck">
+								<div class="flat-green single-row">
+									<div class="radio">
+										<!--此处若给input添加checked,即表示被选中-->
+										<input type="checkbox">
+										<img src="../images/photos/user2.png" alt=""/>
+										<label>月饼小姐</label>
+									</div>
+									<div class="radio">
+										<input type="checkbox"/>
+										<img src="../images/photos/user2.png" alt=""/>
+										<label>月亮小姐</label>
+									</div>
+									<div class="radio">
+										<input type="checkbox"/>
+										<img src="../images/photos/user2.png" alt=""/>
+										<label>月树小姐</label>
+									</div>
+									<div class="radio">
+										<input type="checkbox"/>
+										<img src="../images/photos/user2.png" alt=""/>
+										<label>月球小姐</label>
+									</div>
+									<div class="radio">
+										<input type="checkbox"/>
+										<img src="../images/photos/user2.png" alt=""/>
+										<label>月星小姐</label>
+									</div>
+								</div>
+								</div>
+							</form>
 						</div>
 					</section>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<section class="panel">
 						<header class="panel-heading">
 							发布通知
@@ -196,6 +233,7 @@
 								</div>
 								<div class="form-group">
 									<div class="col-md-12">
+										<!--当用户列表中的用户被选中之后，此处应该显示，多个用户以逗号分隔；同样的，此处输入正确的用户名之后，用户列表应被选中——此为php实现部分-->
 										<label for="mUser">接收人</label>
 										<input type="text" class="form-control" id="mUser" placeholder="接收人不可为空"/>
 									</div>
@@ -239,6 +277,14 @@
 
 <script type="text/javascript" src="../js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
 <script type="text/javascript" src="../js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+<!--ios7-->
+<script src="../js/ios-switch/switchery.js" ></script>
+<script src="../js/ios-switch/ios-init.js" ></script>
+
+<!--icheck -->
+<script src="../js/iCheck/jquery.icheck.js"></script>
+<script src="../js/icheck-init.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>

@@ -21,7 +21,7 @@ b-index:首页
 
 b-message-all:查看所有通知
 b-message-info:通知详情
-b-message-new:发布通知 【此页面尚未完成】
+b-message-new:发布通知
 
 b-person-account:个人账户
 b-person-info:个人信息
@@ -43,7 +43,7 @@ index:首页
 
 message-all:查看所有通知
 message-info:通知详情
-message-new:发布通知 【此页面尚未完成】
+message-new:发布通知
 
 person-account:个人账户 
 person-info:个人信息
