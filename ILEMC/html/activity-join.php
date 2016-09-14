@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <?php
 session_start();
-$_SESSION['userid']=1;
+
 ?>
 <html lang="en">
 <head>
@@ -265,33 +265,6 @@ $_SESSION['userid']=1;
                                         }
                                     }
                                     ?>
-
-
-                                    <tr style="background-color:#fff">
-                                        <td>
-                                            <a href="#">
-                                                种萝卜
-                                            </a>
-                                        </td>
-                                        <td class="hidden-phone">种萝卜吧啦吧啦...</td>
-                                        <td>2016-09-01</td>
-                                        <td><span class="label label-success label-mini">已结束</span></td>
-                                        <td>兔子先生</td>
-                                    </tr>
-
-
-                                    <tr style="background-color:#fff">
-                                        <td>
-                                            <a href="#">
-                                                砍树
-                                            </a>
-                                        </td>
-                                        <td class="hidden-phone">上月亮砍树吧啦吧啦...</td>
-                                        <td>2016-09-01</td>
-                                        <td><span class="label label-success label-mini">已结束</span></td>
-                                        <td>吴刚</td>
-                                    </tr>
-
                                     </tbody>
                                 </table>
                             </div>

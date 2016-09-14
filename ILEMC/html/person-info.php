@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$_SESSION['userid'] = 1;
 ?>
 <html lang="en">
 <head>
@@ -191,7 +190,7 @@ $_SESSION['userid'] = 1;
                                     $link = mysqli_connect('localhost', 'root', '', 'odb');
                                     mysqli_query($link, 'set name utf8');
                                     $nowuserid=$_SESSION['userid'];
-                                    echo $nowuserid;
+//                                    echo $nowuserid;
 //                                    if(isset($_SESSION['iflogin'])&&$_SESSION['iflogin']){
                                     if (1) {
                                         $link = mysqli_connect('localhost', 'root', '', 'odb');

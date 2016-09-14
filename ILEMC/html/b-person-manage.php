@@ -29,7 +29,13 @@ session_start();
 </head>
 
 <body class="sticky-header">
-
+<?php
+$link=mysqli_connect('localhost','root','','odb');
+mysqli_query($link,'set names utf8');
+$nowuserid=$_SESSION['userid'];
+$sql="select `username` from `user` where id=$nowuserid";
+$result
+?>
 <section>
     <!-- left side start-->
     <div class="left-side sticky-left-side">

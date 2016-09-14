@@ -37,9 +37,17 @@ session_start();
     <script src="../js/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body class="sticky-header">
+<?php
+$link = mysqli_connect('localhost', 'root', '', 'odb');
+mysqli_query($link, 'set names utf8');
 
+$nowuserid = $_SESSION['userid'];
+//echo $nowuserid;
+$sql3 = "select `username` from `user` where id = $nowuserid ";
+$result3 = mysqli_query($link, $sql3);
+@$row3 = mysqli_fetch_row($result3);
+?>
 <section>
     <!-- left side start-->
     <div class="left-side sticky-left-side">
@@ -153,24 +161,13 @@ session_start();
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <img src="../images/photos/user2.png" alt=""/>
                             <?php
-                            $link = mysqli_connect('localhost', 'root', '', 'odb');
-                            mysqli_query($link, 'set names utf8');
-
-                            if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
-
-                                $nowuserid = $_SESSION['userid'];
-                                //echo $nowuserid;
-                                $sql3 = "select `username` from `user` where id = $nowuserid ";
-                                $result3 = mysqli_query($link, $sql3);
-                                @$row3 = mysqli_fetch_row($result3);
-                                echo $row3[0];
-                            }
+                            echo $row3[0];
                             ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -193,74 +190,87 @@ session_start();
                 <div class="col-md-12">
                     <!--statistics start-->
                     <div class="row state-overview">
-                        <div class="col-md-4 col-xs-12 col-sm-4">
-                            <div class="panel purple">
-                                <div class="symbol">
-                                    <i class="fa fa-flag"></i>
-                                </div>
-                                <div class="state-value">
-                                    <div class="value">
-                                        <?php
-                                        $sql2="select count(*) from `activity` where responsibility=$nowuserid";
-                                        $result2 = mysqli_query($link, $sql2);
-                                        @$row2=mysqli_fetch_row($result2);
-                                        if(!$row2){
-                                            $row2[0]="0";
-                                        }
-                                        echo $row2[0];
-                                        ?>
-                                    </div><!--此处为我管理的数量-->
-                                    <div class="title"> 我管理的活动</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-4">
-                            <div class="panel red">
-                                <div class="symbol">
-                                    <i class="fa fa-tags"></i>
-                                </div>
-                                <div class="state-value">
-                                    <div class="value">
-                                        <?php
-                                        $sql2="select count(*) from `activity-participant` where userid=$nowuserid";
-                                        $result2 = mysqli_query($link, $sql2);
-                                        @$row2=mysqli_fetch_row($result2);
-                                        if(!$row2){
-                                            $row2[0]="0";
-                                        echo $row2[0];
-                                        ?>
-                                    </div><!--此处为我参与活动的数量-->
-                                    <div class="title"> 我参与的活动</div>
+                        <a href="activity-manage.php" style="text-decoration:none; color:#fff;">
+                            <div class="col-md-4 col-xs-12 col-sm-4">
+                                <div class="panel purple">
+                                    <div class="symbol">
+                                        <i class="fa fa-flag"></i>
+                                    </div>
+                                    <div class="state-value">
+                                        <div class="value">
+                                            <?php
+                                            $sql2 = "select count(*) from `activity` where responsibility=$nowuserid";
+                                            $result2 = mysqli_query($link, $sql2);
+                                            @$row2 = mysqli_fetch_row($result2);
+                                            if (!$row2) {
+                                                $row2[0] = "0";
+                                            }
+                                            echo $row2[0];
+                                            ?>
+                                        </div><!--此处为我管理的数量-->
+                                        <div class="title"> 我管理的活动</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-4">
-                            <div class="panel blue">
-                                <div class="symbol">
-                                    <i class="fa fa-edit"></i>
-                                </div>
-                                <div class="state-value">
-                                    <div class="value"><?php
-                                        $sql2="select count(*) from `activity` where responsibility=$nowuserid and state=0";
-                                        $result2 = mysqli_query($link, $sql2);
-                                        @$row2=mysqli_fetch_row($result2);
-                                        if(!$row2){
-                                            $row2[0]="0";
-                                        }
-                                        echo $row2[0];
-                                        ?>
-                                    </div><!--此处为审核中活动的数量-->
-                                    <div class="title"> 审核中的活动</div>
+                        </a>
+                        <a href="activity-join.php" style="text-decoration:none; color:#fff;">
+                            <div class="col-md-4 col-xs-12 col-sm-4">
+                                <div class="panel red">
+                                    <div class="symbol">
+                                        <i class="fa fa-tags"></i>
+                                    </div>
+                                    <div class="state-value">
+                                        <div class="value">
+                                            <?php
+                                            $sql2 = "select count(*) from `activity-participant` where userid=$nowuserid";
+                                            $result2 = mysqli_query($link, $sql2);
+                                            @$row2 = mysqli_fetch_row($result2);
+                                            if (!$row2)
+                                                $row2[0] = "0";
+                                            echo $row2[0];
+                                            ?>
+                                        </div><!--此处为我参与活动的数量-->
+                                        <div class="title"> 我参与的活动</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+                        <a href="b-activity-approve.php" style="text-decoration:none; color:#fff;">
+                            <div class="col-md-4 col-xs-12 col-sm-4">
+                                <div class="panel blue">
+                                    <div class="symbol">
+                                        <i class="fa fa-edit"></i>
+                                    </div>
+                                    <div class="state-value">
+                                        <div class="value">
+                                            <?php
+                                            $sql2 = "select count(*) from `activity` where responsibility=$nowuserid and state=0";
+                                            $result2 = mysqli_query($link, $sql2);
+                                            @$row2 = mysqli_fetch_row($result2);
+                                            if (!$row2) {
+                                                $row2[0] = "0";
+                                            }
+                                            echo $row2[0];
+                                            ?>
+                                        </div><!--此处为审核中活动的数量-->
+                                        <div class="title"> 审核中的活动</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <!--statistics end-->
                 </div>
             </div>
         </div>
         <!-- body wrapper end-->
-
+        <!--        <div>-->
+        <!--            <p>-->
+        <!--                --><?php
+        //                echo $nowuserid;
+        //                ?>
+        <!--            </p>-->
+        <!--        </div>-->
 
         <!--footer section start-->
         <footer>

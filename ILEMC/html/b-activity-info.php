@@ -41,8 +41,9 @@ if($activityname!="" and $activityperson!=""and $startdate!="" and $enddate!="" 
 //                                  ($activityname,$activityperson,$startdate,$enddate,$contain,1)";
 //    $sql="insert into `activity`(`activityname`,`responsibility`,`start-date`,`end-date`,`purpose`,`state`) VALUES
 //    (`$activityname`,`$activityperson`,`$startdate`,`$enddate`,`$contain`,`1`)";
-//    $result=mysqli_query($link,$sql);
-
+    $sql="insert into `activity`(`activityname`,`responsibility`,`start-date`,`end-date`,`purpose`,`state`) VALUES
+       ('$activityname','$activityperson','$startdate','$enddate','$contain','1')";
+    $result=mysqli_query($link,$sql);
 }
 ?>
 <section>
