@@ -1,28 +1,31 @@
 ﻿<!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="ThemeBucket">
-  <link rel="shortcut icon" href="#" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
 
-  <title>小型社团资金流动记录系统</title>
+    <title>小型社团资金流动记录系统</title>
 
-  <!--dynamic table-->
-  <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-  <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css" />
+    <!--dynamic table-->
+    <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+    <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css"/>
 
-  <!--common-->
-  <link href="../css/style.css" rel="stylesheet">
-  <link href="../css/style-responsive.css" rel="stylesheet">
+    <!--common-->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style-responsive.css" rel="stylesheet">
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="../js/html5shiv.js"></script>
-  <script src="../js/respond.min.js"></script>
-  <![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../js/html5shiv.js"></script>
+    <script src="../js/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body class="sticky-header">
@@ -33,18 +36,18 @@
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <a href="b-index.html"><img src="../images/logo.png" alt=""></a>
+            <a href="b-index.php"><img src="../images/logo.png" alt=""></a>
         </div>
 
         <div class="logo-icon text-center">
-            <a href="b-index.html"><img src="../images/logo_icon.png" alt=""></a>
+            <a href="b-index.php"><img src="../images/logo_icon.png" alt=""></a>
         </div>
         <!--logo and iconic logo end-->
 
         <div class="left-side-inner" style="font-family:微软雅黑">
 
             <!-- visible to small devices only -->
-			
+
             <div class="visible-xs hidden-sm hidden-md hidden-lg">
                 <div class="media logged-user">
                     <img alt="" src="../images/photos/user2.png" class="media-object">
@@ -54,36 +57,36 @@
                 </div>
 
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                  <li><a href="b-person-info.html"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
-                  <li><a href="../login.php"><i class="fa fa-sign-out"></i> <span>注销登陆</span></a></li>
+                    <li><a href="b-person-info.php"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
+                    <li><a href="../login.php"><i class="fa fa-sign-out"></i> <span>注销登陆</span></a></li>
                 </ul>
             </div>
 
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li><a href="b-person-account.html"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
+                <li><a href="b-person-account.php"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="b-activity-manage.php"> 我管理的活动</a></li>
                         <li><a href="b-activity-join.php"> 我参与的活动</a></li>
-                        <li><a href="b-activity-new.html"> 新建活动</a></li>
+                        <li><a href="b-activity-new.php"> 新建活动</a></li>
                         <li class="active"><a href="b-activity-approve.php"> 审批活动</a></li>
 
                     </ul>
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-bell"></i> <span>通知管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="b-message-all.html"> 查看通知</a></li>
-                        <li><a href="b-message-new.html"> 发布通知</a></li>
+                        <li><a href="b-message-all.php"> 查看通知</a></li>
+                        <li><a href="b-message-new.php"> 发布通知</a></li>
                     </ul>
                 </li>
 
-                <li><a href="b-person-manage.html"><i class="fa fa-users"></i> <span>人员管理</span></a></li>
+                <li><a href="b-person-manage.php"><i class="fa fa-users"></i> <span>人员管理</span></a></li>
 
                 <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="b-account-all.html"> 查看账目</a></li>
-                        <li><a href="b-account-approve.html"> 审核账目</a></li>
+                        <li><a href="b-account-all.php"> 查看账目</a></li>
+                        <li><a href="b-account-approve.php"> 审核账目</a></li>
                     </ul>
                 </li>
             </ul>
@@ -92,9 +95,9 @@
         </div>
     </div>
     <!-- left side end-->
-    
+
     <!-- main content start-->
-    <div class="main-content" >
+    <div class="main-content">
 
         <!-- header section start-->
         <div class="header-section">
@@ -105,7 +108,7 @@
 
             <!--search start 搜索功能待定-->
             <form class="searchform" action="#" method="post">
-                <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
             </form>
             <!--search end-->
 
@@ -121,53 +124,52 @@
                             <h5 class="title">通知</h5>
                             <ul class="dropdown-list normal-list">
                                 <li class="new">
-                                    <a href="b-message-info.html">
+                                    <a href="b-message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前 例 30mins ago</em>
                                     </a>
                                 </li>
                                 <li class="new">
-                                    <a href="b-message-info.html">
+                                    <a href="b-message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前 例 1小时之前</em>
                                     </a>
                                 </li>
                                 <li class="new">
-                                    <a href="b-message-info.html">
+                                    <a href="b-message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前</em>
                                     </a>
                                 </li>
-                                <li class="new"><a href="b-message-all.html">查看所有通知</a></li>
+                                <li class="new"><a href="b-message-all.php">查看所有通知</a></li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="../images/photos/user2.png" alt="" /> <!--用户头像...待定功能= =-->
+                            <img src="../images/photos/user2.png" alt=""/> <!--用户头像...待定功能= =-->
 
                             <?php
                             $link = mysqli_connect('localhost', 'root', '', 'odb');
-                            mysqli_query($link,'set names utf8');
+                            mysqli_query($link, 'set names utf8');
 
-                            if(!session_id())
-                                session_start();
-                            if(isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                $nowuserid=$_SESSION['userid'];
-                            //echo $nowuserid;
-                            $sql3 = "select `username` from `user` where id = $nowuserid ";
-                            $result3 = mysqli_query($link, $sql3);
-                            @$row3 = mysqli_fetch_row($result3);
-                            echo $row3[0];
+                            if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
+                                $nowuserid = $_SESSION['userid'];
+                                //echo $nowuserid;
+                                $sql3 = "select `username` from `user` where id = $nowuserid ";
+                                $result3 = mysqli_query($link, $sql3);
+                                @$row3 = mysqli_fetch_row($result3);
+                                echo $row3[0];
+                            }
                             ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="b-person-info.html"><i class="fa fa-user"></i>  个人信息</a></li>
-                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="b-person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
+                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -180,117 +182,117 @@
 
         <!-- page heading start -->
         <div class="page-heading" style="font-family:微软雅黑">
-			
+
         </div>
         <!-- page heading end -->
 
         <!--body wrapper start -->
-        <div class="wrapper" style="font-family:微软雅黑">                             
-			 <div class="row">
+        <div class="wrapper" style="font-family:微软雅黑">
+            <div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
                         <header class="panel-heading">
                             审批活动
                         </header>
                         <div class="panel-body">
-							<div class="adv-table">
-                            <table class="display table table-hover" id="dynamic-table">
-                                <thead>
-                                <tr>
-                                    <th> 活动名称</th>
-                                    <th class="hidden-phone">活动简述</th>
-                                    <th>开始时间</th>
-                                    <th>状态</th>
-									<th>负责人</th>
-                                </tr>
-                                </thead>
-								
-                                <tbody>
-                                <?php
-                                //每循环一次，取一行数据记录显示在一行中
+                            <div class="adv-table">
+                                <table class="display table table-hover" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th> 活动名称</th>
+                                        <th class="hidden-phone">活动简述</th>
+                                        <th>开始时间</th>
+                                        <th>状态</th>
+                                        <th>负责人</th>
+                                    </tr>
+                                    </thead>
 
-                                $link = mysqli_connect('localhost', 'root', '', 'odb');
-                                mysqli_query($link,'set names utf8');
+                                    <tbody>
+                                    <?php
 
-                                $sql = "select * from activity  ";
-                                $result = mysqli_query($link, $sql);
-                                $row=mysqli_fetch_row($result);
-                                while($row){
-                                    ?>
-								<tr style="background-color:#fff">
+                                    //每循环一次，取一行数据记录显示在一行中
 
-                                    <td>
-                                        <a href="#">
-                                            <?php
-                                            echo $row[1];
-                                            ?>
-                                        </a>
-                                    </td>
-                                    <td class="hidden-phone">
-                                        <?php
-                                        echo $row[5];
+                                    $link = mysqli_connect('localhost', 'root', '', 'odb');
+                                    mysqli_query($link, 'set names utf8');
+
+                                    $sql = "select * from activity  ";
+                                    $result = mysqli_query($link, $sql);
+                                    $row = mysqli_fetch_row($result);
+                                    while ($row) {
                                         ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                        echo $row[3];
-                                        ?>
-                                    </td>
-                                    <td><span class="label label-warning label-mini">
+                                        <tr style="background-color:#fff">
+                                            <td>
+                                                <a href="#">
+                                                    <?php
+                                                    echo $row[1];
+                                                    ?>
+                                                </a>
+                                            </td>
+                                            <td class="hidden-phone">
+                                                <?php
+                                                echo $row[5];
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                echo $row[3];
+                                                ?>
+                                            </td>
+                                            <td><span class="label label-warning label-mini">
                                             <?php
-                                            if($row[6]==0)
+                                            if ($row[6] == 0)
                                                 echo "待审批";
-                                            else if($row[6]==1||$row[6]==2)
+                                            else if ($row[6] == 1 || $row[6] == 2)
                                                 echo "已通过";
-                                            else if($row[6]==3)
+                                            else if ($row[6] == 3)
                                                 echo "未通过";
                                             ?>
                                         </span></td>
-									<td>
+                                            <td>
+                                                <?php
+                                                $sql2 = "select `username` from user where id=$row[2] ";
+                                                $result2 = mysqli_query($link, $sql2);
+                                                $row2 = mysqli_fetch_row($result2);
+                                                echo $row2[0];
+                                                ?>
+                                            </td>
+                                        </tr>
                                         <?php
-                                        $sql2 = "select `username` from user where id=$row[2] ";
-                                        $result2 = mysqli_query($link, $sql2);
-                                        $row2 = mysqli_fetch_row($result2);
-                                        echo $row2[0];
-                                        ?>
-                                    </td>
-                                </tr>
-                                <?php
-                                $row=mysqli_fetch_row($result);
-                                }
-                                ?>
-                                <tr style="background-color:#fff">
-                                    <td>
-                                        <a href="#">
-                                            春游
-                                        </a>
-                                    </td>
-                                    <td class="hidden-phone">春游吧啦吧啦...</td>
-                                    <td>2016-09-01 </td>
-                                    <td><span class="label label-success label-mini">已通过</span></td>
-									<td>月饼小姐</td>
-                                </tr>
-								<tr style="background-color:#fff">
-                                    <td>
-                                        <a href="#">
-                                            春游
-                                        </a>
-                                    </td>
-                                    <td class="hidden-phone">春游吧啦吧啦...</td>
-                                    <td>2016-09-01 </td>
-                                    <td><span class="label label-danger label-mini">未通过</span></td>
-									<td>月饼小姐</td>
-                                </tr>
-                                </tbody>
-                            </table>
-							</div>
-						</div>
+                                        $row = mysqli_fetch_row($result);
+                                    }
+                                    ?>
+<!--                                    <tr style="background-color:#fff">-->
+<!--                                        <td>-->
+<!--                                            <a href="#">-->
+<!--                                                春游-->
+<!--                                            </a>-->
+<!--                                        </td>-->
+<!--                                        <td class="hidden-phone">春游吧啦吧啦...</td>-->
+<!--                                        <td>2016-09-01</td>-->
+<!--                                        <td><span class="label label-success label-mini">已通过</span></td>-->
+<!--                                        <td>月饼小姐</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr style="background-color:#fff">-->
+<!--                                        <td>-->
+<!--                                            <a href="#">-->
+<!--                                                春游-->
+<!--                                            </a>-->
+<!--                                        </td>-->
+<!--                                        <td class="hidden-phone">春游吧啦吧啦...</td>-->
+<!--                                        <td>2016-09-01</td>-->
+<!--                                        <td><span class="label label-danger label-mini">未通过</span></td>-->
+<!--                                        <td>月饼小姐</td>-->
+<!--                                    </tr>-->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
         </div>
         <!-- body wrapper end-->
-		
+
 
         <!--footer section start-->
         <footer>
@@ -323,3 +325,4 @@
 
 </body>
 </html>
+

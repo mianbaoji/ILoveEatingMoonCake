@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$_SESSION['userid'] = 1;
 ?>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,11 +15,6 @@ session_start();
     <link rel="shortcut icon" href="#" type="image/png">
 
     <title>小型社团资金流动记录系统</title>
-
-    <!--dynamic table-->
-    <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
-    <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css"/>
 
     <!--common-->
     <link href="../css/style.css" rel="stylesheet">
@@ -31,7 +28,17 @@ session_start();
 </head>
 
 <body class="sticky-header">
+<?php
+$nowuserid = 1;//$_SESSION['userid'];
+//echo("<script>console.log('".$nowuserid."');</script>");
+$link = mysqli_connect('localhost', 'root', '', 'odb');
+mysqli_query($link, 'set name utf8');
 
+$sql = 'select `username`,`tel`,`email`,`ifboss` from user where id=$nowuserid';
+$result = mysqli_query($link, $sql);
+@$row = mysqli_fetch_row($result);
+
+?>
 <section>
     <!-- left side start-->
     <div class="left-side sticky-left-side">
@@ -69,7 +76,7 @@ session_start();
                 <li><a href="person-account.php"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a href="activity-manage.php"> 我管理的活动</a></li>
+                        <li><a href="activity-manage.php"> 我管理的活动</a></li>
                         <li><a href="activity-join.php"> 我参与的活动</a></li>
                         <li><a href="activity-new.php"> 申请活动</a></li>
                         <li><a href="activity-approving.php">审核中的活动</a></li>
@@ -145,18 +152,7 @@ session_start();
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <img src="../images/photos/user2.png" alt=""/>
                             <?php
-                            $link = mysqli_connect('localhost', 'root', '', 'odb');
-                            mysqli_query($link, 'set names utf8');
-
-
-                            if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
-                                $nowuserid = $_SESSION['userid'];
-                                //echo $nowuserid;
-                                $sql3 = "select `username` from `user` where id = $nowuserid ";
-                                $result3 = mysqli_query($link, $sql3);
-                                @$row3 = mysqli_fetch_row($result3);
-                                echo $row3[0];
-                            }
+                            echo $row[0];
                             ?>
                             <span class="caret"></span>
                         </a>
@@ -180,19 +176,22 @@ session_start();
         <!-- page heading end -->
 
         <!--body wrapper start -->
+
         <div class="wrapper" style="font-family:微软雅黑">
             <div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
-                        <header class="panel-heading" charset="utf-8">
-                            我管理的活动
+                        <header class="panel-heading">
+                            <!--此处应为跳转过来的页面，根据实际修改href和文本-->
+                            <a href="activity-manage.php" style="text-decoration:none">我管理的活动</a> > 活动详情
                         </header>
+
                         <div class="panel-body">
                             <div class="adv-table">
                                 <table class="display table table-hover" id="dynamic-table">
                                     <thead>
                                     <tr>
-                                        <th> 活动名称</th>
+                                        <th>活动名称</th>
                                         <th class="hidden-phone">活动简述</th>
                                         <th>开始时间</th>
                                         <th>状态</th>
@@ -200,82 +199,72 @@ session_start();
                                     </tr>
                                     </thead>
 
-
                                     <tbody>
-
                                     <?php
                                     //每循环一次，取一行数据记录显示在一行中
 
                                     $link = mysqli_connect('localhost', 'root', '', 'odb');
                                     mysqli_query($link, 'set names utf8');
-                                    // echo var_dump($_SESSION);
-                                    // $_SESSION['xx']=xx
 
-//                                    if (isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                    if(1)
-                                    {
-                                    $nowuserid = $nowuserid = $_SESSION['userid'];
-                                    $sql = "select * from activity where responsibility=$nowuserid ";
-                                    $result = mysqli_query($link, $sql);
-                                    $row = mysqli_fetch_row($result);
-                                    while ($row){
+                                    if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
 
+                                        $nowuserid = $_SESSION['userid'];
+
+                                        $sql = "select * from activity where  responsibility = $nowuserid ";
+                                        $result = mysqli_query($link, $sql);
+                                        $row = mysqli_fetch_row($result);
+                                        while ($row) {
+                                            ?>
+                                            <tr style="background-color:#fff">
+                                                <td>
+                                                    <a href="#">
+                                                        <?php
+                                                        echo $row[1];
+                                                        ?>
+                                                    </a>
+                                                </td>
+                                                <td class="hidden-phone">
+                                                    <?php
+                                                    echo $row[5];
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    echo $row[3];
+                                                    ?>
+                                                </td>
+                                                <td><span class="label label-warning label-mini">
+                                            <?php
+                                            if ($row[6] == 0)
+                                                echo "待审批";
+                                            else if ($row[6] == 1 || $row[6] == 2)
+                                                echo "已通过";
+                                            else if ($row[6] == 3)
+                                                echo "未通过";
+                                            ?>
+                                        </span></td>
+                                                <td>
+                                                    <?php
+                                                    $sql3 = "select `username` from `user` where id = $nowuserid ";
+                                                    $result3 = mysqli_query($link, $sql3);
+                                                    @$row3 = mysqli_fetch_row($result3);
+                                                    echo $row3[0];
+
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            $row = mysqli_fetch_row($result);
+                                        }
+                                    }
                                     ?>
-                                    <tr style="background-color:#fff">
-                                        <!-- 连接数据库 -->
-
-                                        <td>
-                                            <a href="#">
-                                                <?php
-                                                echo $row[1];
-                                                ?>
-                                            </a>
-                                        </td>
-                                        <td class="hidden-phone">
-                                            <?php
-                                            echo $row[5];
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            echo $row[3];
-                                            ?>
-                                        </td>
-                                        <td><span class="label label-warning label-mini">
-                                        <?php
-
-                                        if ($row[6] == 0)
-                                            echo "待审批";
-                                        else if ($row[6] == 1)
-                                            echo "已开始";
-                                        else if ($row[6] == 2)
-                                            echo "已结束";
-                                        ?>
-                                    </span></td>
-                                        <td>
-                                            <?php
-
-                                            $sql2 = "select `username` from user where id=$nowuserid ";
-                                            $result2 = mysqli_query($link, $sql2);
-                                            $row2 = mysqli_fetch_row($result2);
-                                            echo $row2[0];
-
-                                            ?>
-                                        </td>
-                                    </tr>
                                     </tbody>
-                                    <?php
-                                    $row = mysqli_fetch_row($result);
-                                    }
-                                    }
-                                    ?>
                                 </table>
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
-
         </div>
         <!-- body wrapper end-->
 
@@ -291,19 +280,13 @@ session_start();
     <!-- main content end-->
 </section>
 
-<!-- 以下是js -->
+<!-- Placed js at the end of the document so the pages load faster -->
 <script src="../js/jquery-1.10.2.min.js"></script>
 <script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="../js/jquery-migrate-1.2.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
-
-<!--dynamic table-->
-<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
-<!--dynamic table initialization -->
-<script src="../js/dynamic_table_init.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>

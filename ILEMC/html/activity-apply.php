@@ -6,18 +6,14 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="keywords"
-          content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
     <title>小型社团资金流动记录系统</title>
 
-    <!--dynamic table-->
-    <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
-    <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
 
     <!--common-->
     <link href="../css/style.css" rel="stylesheet">
@@ -69,9 +65,9 @@ session_start();
                 <li><a href="person-account.php"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a href="activity-manage.php"> 我管理的活动</a></li>
+                        <li><a href="activity-manage.php"> 我管理的活动</a></li>
                         <li><a href="activity-join.php"> 我参与的活动</a></li>
-                        <li><a href="activity-new.php"> 申请活动</a></li>
+                        <li class="active"><a href="activity-new.php"> 申请活动</a></li>
                         <li><a href="activity-approving.php">审核中的活动</a></li>
 
                     </ul>
@@ -90,7 +86,7 @@ session_start();
     <!-- left side end-->
 
     <!-- main content start-->
-    <div class="main-content">
+    <div class="main-content" >
 
         <!-- header section start-->
         <div class="header-section">
@@ -101,7 +97,7 @@ session_start();
 
             <!--search start-->
             <form class="searchform" action="#" method="post">
-                <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
             </form>
             <!--search end-->
 
@@ -143,25 +139,12 @@ session_start();
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="../images/photos/user2.png" alt=""/>
-                            <?php
-                            $link = mysqli_connect('localhost', 'root', '', 'odb');
-                            mysqli_query($link, 'set names utf8');
-
-
-                            if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
-                                $nowuserid = $_SESSION['userid'];
-                                //echo $nowuserid;
-                                $sql3 = "select `username` from `user` where id = $nowuserid ";
-                                $result3 = mysqli_query($link, $sql3);
-                                @$row3 = mysqli_fetch_row($result3);
-                                echo $row3[0];
-                            }
-                            ?>
+                            <img src="../images/photos/user2.png" alt="" />
+                            月饼小姐
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
+                            <li><a href="person-info.php"><i class="fa fa-user"></i>  个人信息</a></li>
                             <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
@@ -182,100 +165,31 @@ session_start();
         <!--body wrapper start -->
         <div class="wrapper" style="font-family:微软雅黑">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     <section class="panel">
-                        <header class="panel-heading" charset="utf-8">
-                            我管理的活动
+                        <header class="panel-heading">
+                            申请活动
                         </header>
                         <div class="panel-body">
-                            <div class="adv-table">
-                                <table class="display table table-hover" id="dynamic-table">
-                                    <thead>
-                                    <tr>
-                                        <th> 活动名称</th>
-                                        <th class="hidden-phone">活动简述</th>
-                                        <th>开始时间</th>
-                                        <th>状态</th>
-                                        <th>负责人</th>
-                                    </tr>
-                                    </thead>
-
-
-                                    <tbody>
-
-                                    <?php
-                                    //每循环一次，取一行数据记录显示在一行中
-
-                                    $link = mysqli_connect('localhost', 'root', '', 'odb');
-                                    mysqli_query($link, 'set names utf8');
-                                    // echo var_dump($_SESSION);
-                                    // $_SESSION['xx']=xx
-
-//                                    if (isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                    if(1)
-                                    {
-                                    $nowuserid = $nowuserid = $_SESSION['userid'];
-                                    $sql = "select * from activity where responsibility=$nowuserid ";
-                                    $result = mysqli_query($link, $sql);
-                                    $row = mysqli_fetch_row($result);
-                                    while ($row){
-
-                                    ?>
-                                    <tr style="background-color:#fff">
-                                        <!-- 连接数据库 -->
-
-                                        <td>
-                                            <a href="#">
-                                                <?php
-                                                echo $row[1];
-                                                ?>
-                                            </a>
-                                        </td>
-                                        <td class="hidden-phone">
-                                            <?php
-                                            echo $row[5];
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            echo $row[3];
-                                            ?>
-                                        </td>
-                                        <td><span class="label label-warning label-mini">
-                                        <?php
-
-                                        if ($row[6] == 0)
-                                            echo "待审批";
-                                        else if ($row[6] == 1)
-                                            echo "已开始";
-                                        else if ($row[6] == 2)
-                                            echo "已结束";
-                                        ?>
-                                    </span></td>
-                                        <td>
-                                            <?php
-
-                                            $sql2 = "select `username` from user where id=$nowuserid ";
-                                            $result2 = mysqli_query($link, $sql2);
-                                            $row2 = mysqli_fetch_row($result2);
-                                            echo $row2[0];
-
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <?php
-                                    $row = mysqli_fetch_row($result);
-                                    }
-                                    }
-                                    ?>
-                                </table>
-                            </div>
+                            <form action="activity-approving.php" class="form-horizontal ">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="InputName">活动名称</label>
+                                        <input type="text" class="form-control" id="InputName" placeholder="活动名称不可为空"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="InputContent">活动内容</label>
+                                        <textarea class="wysihtml5 form-control" rows="9" id="InputContent" placeholder="活动内容不可为空"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">申请</button>
+                            </form>
                         </div>
                     </section>
                 </div>
             </div>
-
         </div>
         <!-- body wrapper end-->
 
@@ -291,7 +205,7 @@ session_start();
     <!-- main content end-->
 </section>
 
-<!-- 以下是js -->
+<!-- Placed js at the end of the document so the pages load faster -->
 <script src="../js/jquery-1.10.2.min.js"></script>
 <script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="../js/jquery-migrate-1.2.1.min.js"></script>
@@ -299,14 +213,19 @@ session_start();
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
 
-<!--dynamic table-->
-<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
-<!--dynamic table initialization -->
-<script src="../js/dynamic_table_init.js"></script>
+<script type="text/javascript" src="../js/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript" src="../js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="../js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>
+
+<script>
+    jQuery(document).ready(function(){
+        $('.wysihtml5').wysihtml5();
+    });
+</script>
 
 </body>
 </html>

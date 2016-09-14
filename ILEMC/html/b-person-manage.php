@@ -14,9 +14,7 @@ session_start();
 
     <title>小型社团资金流动记录系统</title>
 
-    <!--dynamic table-->
-    <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
-    <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <!--data table-->
     <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css"/>
 
     <!--common-->
@@ -38,11 +36,11 @@ session_start();
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <a href="index.php"><img src="../images/logo.png" alt=""></a>
+            <a href="b-index.php"><img src="../images/logo.png" alt=""></a>
         </div>
 
         <div class="logo-icon text-center">
-            <a href="index.php"><img src="../images/logo_icon.png" alt=""></a>
+            <a href="b-index.php"><img src="../images/logo_icon.png" alt=""></a>
         </div>
         <!--logo and iconic logo end-->
 
@@ -54,32 +52,41 @@ session_start();
                 <div class="media logged-user">
                     <img alt="" src="../images/photos/user2.png" class="media-object">
                     <div class="media-body">
-                        <h4><a href="person-info.php">月饼小姐</a></h4>
+                        <h4><a href="#">月饼小姐</a></h4>
                     </div>
                 </div>
 
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li><a href="person-info.php"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
+                    <li><a href="b-person-info.php"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
                     <li><a href="../login.php"><i class="fa fa-sign-out"></i> <span>注销登陆</span></a></li>
                 </ul>
             </div>
 
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li><a href="person-account.php"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
-                <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
+                <li><a href="b-person-account.php"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
+                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
-                        <li class="active"><a href="activity-manage.php"> 我管理的活动</a></li>
-                        <li><a href="activity-join.php"> 我参与的活动</a></li>
-                        <li><a href="activity-new.php"> 申请活动</a></li>
-                        <li><a href="activity-approving.php">审核中的活动</a></li>
+                        <li><a href="b-activity-manage.php"> 我管理的活动</a></li>
+                        <li><a href="b-activity-join.php"> 我参与的活动</a></li>
+                        <li><a href="b-activity-new.php"> 新建活动</a></li>
+                        <li><a href="b-activity-approve.php"> 审批活动</a></li>
 
                     </ul>
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-bell"></i> <span>通知管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="message-all.php"> 查看通知</a></li>
-                        <li><a href="message-new.php"> 发布通知</a></li>
+                        <li><a href="b-message-all.php"> 查看通知</a></li>
+                        <li><a href="b-message-new.php"> 发布通知</a></li>
+                    </ul>
+                </li>
+
+                <li class="active"><a href="b-person-manage.php"><i class="fa fa-users"></i> <span>人员管理</span></a></li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="b-account-all.php"> 查看账目</a></li>
+                        <li><a href="b-account-approve.php"> 审核账目</a></li>
                     </ul>
                 </li>
             </ul>
@@ -99,7 +106,7 @@ session_start();
             <a class="toggle-btn"><i class="fa fa-bars"></i></a>
             <!--toggle button end-->
 
-            <!--search start-->
+            <!--search start 搜索功能待定-->
             <form class="searchform" action="#" method="post">
                 <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
             </form>
@@ -117,51 +124,38 @@ session_start();
                             <h5 class="title">通知</h5>
                             <ul class="dropdown-list normal-list">
                                 <li class="new">
-                                    <a href="message-info.php">
+                                    <a href="b-message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前 例 30mins ago</em>
                                     </a>
                                 </li>
                                 <li class="new">
-                                    <a href="message-info.php">
+                                    <a href="b-message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前 例 1小时之前</em>
                                     </a>
                                 </li>
                                 <li class="new">
-                                    <a href="message-info.php">
+                                    <a href="b-message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前</em>
                                     </a>
                                 </li>
-                                <li class="new"><a href="message-all.php">查看所有通知</a></li>
+                                <li class="new"><a href="b-message-all.php">查看所有通知</a></li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="../images/photos/user2.png" alt=""/>
-                            <?php
-                            $link = mysqli_connect('localhost', 'root', '', 'odb');
-                            mysqli_query($link, 'set names utf8');
-
-
-                            if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
-                                $nowuserid = $_SESSION['userid'];
-                                //echo $nowuserid;
-                                $sql3 = "select `username` from `user` where id = $nowuserid ";
-                                $result3 = mysqli_query($link, $sql3);
-                                @$row3 = mysqli_fetch_row($result3);
-                                echo $row3[0];
-                            }
-                            ?>
+                            <img src="../images/photos/user2.png" alt=""/> <!--用户头像...待定功能= =-->
+                            月饼小姐
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
+                            <li><a href="b-person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
                             <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
@@ -184,98 +178,69 @@ session_start();
             <div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
-                        <header class="panel-heading" charset="utf-8">
-                            我管理的活动
+                        <header class="panel-heading">
+                            人员管理
                         </header>
                         <div class="panel-body">
-                            <div class="adv-table">
-                                <table class="display table table-hover" id="dynamic-table">
-                                    <thead>
-                                    <tr>
-                                        <th> 活动名称</th>
-                                        <th class="hidden-phone">活动简述</th>
-                                        <th>开始时间</th>
-                                        <th>状态</th>
-                                        <th>负责人</th>
-                                    </tr>
-                                    </thead>
-
-
-                                    <tbody>
-
-                                    <?php
-                                    //每循环一次，取一行数据记录显示在一行中
-
-                                    $link = mysqli_connect('localhost', 'root', '', 'odb');
-                                    mysqli_query($link, 'set names utf8');
-                                    // echo var_dump($_SESSION);
-                                    // $_SESSION['xx']=xx
-
-//                                    if (isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                    if(1)
-                                    {
-                                    $nowuserid = $nowuserid = $_SESSION['userid'];
-                                    $sql = "select * from activity where responsibility=$nowuserid ";
-                                    $result = mysqli_query($link, $sql);
-                                    $row = mysqli_fetch_row($result);
-                                    while ($row){
-
-                                    ?>
-                                    <tr style="background-color:#fff">
-                                        <!-- 连接数据库 -->
-
-                                        <td>
-                                            <a href="#">
-                                                <?php
-                                                echo $row[1];
-                                                ?>
-                                            </a>
-                                        </td>
-                                        <td class="hidden-phone">
-                                            <?php
-                                            echo $row[5];
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            echo $row[3];
-                                            ?>
-                                        </td>
-                                        <td><span class="label label-warning label-mini">
+                            <div class="adv-table editable-table">
+                                <div class="clearfix">
+                                    <div class="btn-group">
+                                        <button id="editable-sample_new" class="btn btn-primary">
+                                            新增<i class="fa fa-plus"></i>
+                                            <!-- 新增功能将跳转到editable-table.js实现，包括新增里会出现的保存和取消-->
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="space15">
+                                    <table class="table table-striped table-bordered" id="editable-sample">
+                                        <thead>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>手机号码</th>
+                                            <th>邮箱</th>
+                                            <th>权限</th>
+                                            <th>操作</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
                                         <?php
+                                        $link = mysqli_connect('localhost', 'root', '', 'odb');
+                                        mysqli_query($link, 'set names utf8');
 
-                                        if ($row[6] == 0)
-                                            echo "待审批";
-                                        else if ($row[6] == 1)
-                                            echo "已开始";
-                                        else if ($row[6] == 2)
-                                            echo "已结束";
+                                        $sql = "select * from user";
+                                        $result = mysqli_query($link, $sql);
+
+                                        while ( $row = mysqli_fetch_row($result)){
                                         ?>
-                                    </span></td>
-                                        <td>
-                                            <?php
-
-                                            $sql2 = "select `username` from user where id=$nowuserid ";
-                                            $result2 = mysqli_query($link, $sql2);
-                                            $row2 = mysqli_fetch_row($result2);
-                                            echo $row2[0];
-
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <?php
-                                    $row = mysqli_fetch_row($result);
-                                    }
-                                    }
-                                    ?>
-                                </table>
+                                        <tr class="">
+                                            <td><?php
+                                                echo $row[1];
+                                                ?></td>
+                                            <td><?php
+                                                echo $row[4];
+                                                ?></td>
+                                            <td><?php
+                                                echo $row[5];
+                                                ?></td>
+                                            <td><?php
+                                                if($row[6]==0)
+                                                echo '普通用户';
+                                                if($row[6]==1) echo '管理用户';
+                                                ?></td>
+                                            <td><a class="edit" href="javascript:;">编辑</a></td>
+                                            <td><a class="delete" href="javascript:;">删除</a></td>
+                                            <!-- 编辑和删除将跳转到editable-table.js实现，下同-->
+                                            <?php } ?>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
-
         </div>
         <!-- body wrapper end-->
 
@@ -299,14 +264,22 @@ session_start();
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
 
-<!--dynamic table-->
-<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
+<!--data table-->
+<script type="text/javascript" src="../js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
-<!--dynamic table initialization -->
-<script src="../js/dynamic_table_init.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>
+
+<!--script for editable table-->
+<script src="../js/editable-table.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function () {
+        EditableTable.init();
+    });
+</script>
 
 </body>
 </html>
