@@ -163,7 +163,7 @@ session_start();
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -212,7 +212,7 @@ session_start();
 
                                         $nowuserid = $_SESSION['userid'];
 
-                                        $sql = "select * from activity where  responsibility = $nowuserid ";
+                                        $sql = "select * from `activity` where  `responsibility` = $nowuserid and (`state`=0 or `state`= -1)";
                                         $result = mysqli_query($link, $sql);
                                         $row = mysqli_fetch_row($result);
                                         while ($row) {
@@ -243,6 +243,8 @@ session_start();
                                                 echo "已通过";
                                             else if ($row[6] == 3)
                                                 echo "未通过";
+                                            else if ($row[6] == -1)
+                                                echo "被驳回";
                                             ?>
                                         </span></td>
                                                 <td>
@@ -260,18 +262,6 @@ session_start();
                                         }
                                     }
                                     ?>
-
-                                    <tr style="background-color:#fff">
-                                        <td>
-                                            <a href="#">
-                                                砍树
-                                            </a>
-                                        </td>
-                                        <td class="hidden-phone">上月亮砍树吧啦吧啦...</td>
-                                        <td>2016-09-01</td>
-                                        <td><span class="label label-danger label-mini">未通过</span></td>
-                                        <td>吴刚</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

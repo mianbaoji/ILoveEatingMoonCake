@@ -174,7 +174,7 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="b-person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -251,6 +251,8 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
                                                 echo "已开始";
                                             else if ($row[6] == 2)
                                                 echo "已结束";
+                                            else if ($row[6] == -1)
+                                                echo "被驳回";
                                             ?>
                                         </span></td>
                                             <td>

@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+  <link rel="shortcut icon" href="#" type="image/png">
+
+  <title>小型社团资金流动记录系统</title>
+
+  <!--common-->
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/style-responsive.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="../js/html5shiv.js"></script>
+  <script src="../js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a href="b-index.html"><img src="../images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="b-index.html"><img src="../images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+        <div class="left-side-inner" style="font-family:微软雅黑">
+
+            <!-- visible to small devices only -->
+			
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="../images/photos/user2.png" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">月饼小姐</a></h4>
+                    </div>
+                </div>
+
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                  <li><a href="b-person-info.html"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
+                  <li><a href="../login.html"><i class="fa fa-sign-out"></i> <span>注销登陆</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a href="b-person-account.html"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="b-activity-manage.html"> 我管理的活动</a></li>
+                        <li><a href="b-activity-join.html"> 我参与的活动</a></li>
+                        <li><a href="b-activity-new.html"> 新建活动</a></li>
+                        <li><a href="b-activity-approve.html"> 审批活动</a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-bell"></i> <span>通知管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="b-message-all.html"> 查看通知</a></li>
+                        <li><a href="b-message-new.html"> 发布通知</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="b-person-manage.html"><i class="fa fa-users"></i> <span>人员管理</span></a></li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="b-account-all.html"> 查看账目</a></li>
+                        <li><a href="b-account-approve.html"> 审核账目</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+            <!--toggle button start-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--toggle button end-->
+
+            <!--search start 搜索功能待定-->
+            <form class="searchform" action="#" method="post">
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+            </form>
+            <!--search end-->
+
+            <!--notification menu start -->
+            <div class="menu-right" style="font-family:微软雅黑">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge">3</span><!--此处为通知数量-->
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">通知</h5>
+                            <ul class="dropdown-list normal-list">
+                                <li class="new">
+                                    <a href="b-message-info.html">
+                                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                        <span class="name">通知简述  </span>
+                                        <em class="small">多久之前 例 30mins ago</em>
+                                    </a>
+                                </li>
+                                <li class="new">
+                                    <a href="b-message-info.html">
+                                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                        <span class="name">通知简述  </span>
+                                        <em class="small">多久之前 例 1小时之前</em>
+                                    </a>
+                                </li>
+                                <li class="new">
+                                    <a href="b-message-info.html">
+                                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                        <span class="name">通知简述  </span>
+                                        <em class="small">多久之前</em>
+                                    </a>
+                                </li>
+                                <li class="new"><a href="b-message-all.html">查看所有通知</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <img src="../images/photos/user2.png" alt="" /> <!--用户头像...待定功能= =-->
+                            月饼小姐
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li><a href="b-person-info.html"><i class="fa fa-user"></i>  个人信息</a></li>
+                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end -->
+
+        <!-- page heading start -->
+        <div class="page-heading" style="font-family:微软雅黑">
+            
+        </div>
+        <!-- page heading end -->
+
+        <!--body wrapper start -->
+        <div class="wrapper" style="font-family:微软雅黑">                             
+			<div class="row">
+				<div class="col-sm-12">
+					<section class="panel">
+						<header class="panel-heading">
+							<a href="b-activity-approve.html" style="text-decoration:none">审批活动</a> > 活动详情
+						</header>
+						<div class="panel-body">
+							<div class="col-md-4">
+								<ul class="p-info">
+									<li>
+										<div class="title">负责人</div>
+										<div class="desk">月饼小姐</div>
+									</li>
+									<li>
+										<div class="title">开始时间</div>
+										<div class="desk">2016.09.10</div>
+									</li>
+									<li>
+										<div class="title">结束时间</div>
+										<div class="desk">--</div><!--若没有结束时间此处用两个横杠“--”代替-->
+									</li>
+									<li>
+										<div class="title">状态</div>
+										<div class="desk"><span class="label label-danger">未通过</span></div><!--如果状态是待审核，则label-danger改为label-warning;已通过-label-success;-->
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-8">
+								<p style="font-size:18px"><strong>一起上月亮砍树</strong></p><!--活动名称，下面是内容-->
+								<p style="padding-top:10px">今年中秋月色这么地好...号召全实验室呢一起上月亮砍树，砍下来的树呢可以当柴火烧玉兔吃。一定很美味。望组织批准我们这个淳朴的活动。</p>
+								<!--待审核状态专有，从这里开始。通过style中display的值来控制。display:none-隐藏;display:block-显示-->
+								<div class="col-sm-12" style="display:block; margin-top:20px;">
+									<button type="submit" style="float:right;" class="btn btn-primary">驳回</button>
+									<button type="submit" style="float:right; margin-right:20px;" class="btn btn-default">通过</button>
+								</div>
+								<!--到这里结束-->
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+        </div>
+        <!-- body wrapper end-->
+		
+
+        <!--footer section start-->
+        <footer>
+            2016 &copy; 小型社团资金流动记录系统 by <a href="#" target="_blank">ILoveEatingMoonCake</a>
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- 以下是js -->
+<script src="../js/jquery-1.10.2.min.js"></script>
+<script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="../js/jquery-migrate-1.2.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/modernizr.min.js"></script>
+<script src="../js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="../js/scripts.js"></script>
+
+</body>
+</html>

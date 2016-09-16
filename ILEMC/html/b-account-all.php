@@ -6,12 +6,18 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="keywords"
+          content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
     <title>小型社团资金流动记录系统</title>
+
+    <!--dynamic table-->
+    <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+    <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css"/>
 
     <!--common-->
     <link href="../css/style.css" rel="stylesheet">
@@ -25,19 +31,7 @@ session_start();
 </head>
 
 <body class="sticky-header">
-<?php
-$link = mysqli_connect('localhost', 'root', '', 'odb');
-mysqli_query($link, 'set names utf8');
 
-if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
-    $nowuserid = $_SESSION['userid'];
-    //echo $nowuserid;
-    $sql = "select `username` from `user` where id = $nowuserid ";
-    $result = mysqli_query($link, $sql);
-    @$row = mysqli_fetch_row($result);
-    $username = $row[0];
-}
-?>
 <section>
     <!-- left side start-->
     <div class="left-side sticky-left-side">
@@ -82,7 +76,7 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
 
                     </ul>
                 </li>
-                <li class="menu-list nav-active"><a href=""><i class="fa fa-bell"></i> <span>通知管理</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-bell"></i> <span>通知管理</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="b-message-all.php"> 查看通知</a></li>
                         <li><a href="b-message-new.php"> 发布通知</a></li>
@@ -91,9 +85,9 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
 
                 <li><a href="b-person-manage.php"><i class="fa fa-users"></i> <span>人员管理</span></a></li>
 
-                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="b-account-all.php"> 查看账目</a></li>
+                        <li class="active"><a href="b-account-all.php"> 查看账目</a></li>
                         <li><a href="b-account-approve.php"> 审核账目</a></li>
                     </ul>
                 </li>
@@ -105,7 +99,7 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
     <!-- left side end-->
 
     <!-- main content start-->
-    <div class="main-content" >
+    <div class="main-content">
 
         <!-- header section start-->
         <div class="header-section">
@@ -116,7 +110,7 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
 
             <!--search start 搜索功能待定-->
             <form class="searchform" action="#" method="post">
-                <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
             </form>
             <!--search end-->
 
@@ -158,14 +152,24 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="../images/photos/user2.png" alt="" /> <!--用户头像...待定功能= =-->
+                            <img src="../images/photos/user2.png" alt=""/> <!--用户头像...待定功能= =-->
                             <?php
-                            echo $username;
+                            $link = mysqli_connect('localhost', 'root', '', 'odb');
+                            mysqli_query($link, 'set names utf8');
+
+                            if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
+                                $nowuserid = $_SESSION['userid'];
+                                //echo $nowuserid;
+                                $sql3 = "select `username` from `user` where id = $nowuserid ";
+                                $result3 = mysqli_query($link, $sql3);
+                                @$row3 = mysqli_fetch_row($result3);
+                                echo $row3[0];
+                            }
                             ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="b-person-info.php"><i class="fa fa-user"></i>  个人信息</a></li>
+                            <li><a href="b-person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
                             <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
@@ -184,45 +188,82 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
         <!-- page heading end -->
 
         <!--body wrapper start -->
-        <?php
-        $informationid = $_GET['id'];
-        $link1 = mysqli_connect('localhost', 'root', '', 'odb');
-        mysqli_query($link1, 'set names utf8');
-        $sql1 = "select * from `information` where `id`=$informationid";
-        $result1 = mysqli_query($link1, $sql1);
-        $row1 = mysqli_fetch_row($result1);
-
-        ?>
         <div class="wrapper" style="font-family:微软雅黑">
             <div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            <a href="b-message-all.php" style="text-decoration:none">查看所有通知</a> > 通知详情
+                            查看所有活动账目
                         </header>
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <h3>[主题]<?php
-                                        echo $row1[6];
-                                        ?></h3></h3><!--主题不变，后面具体根据数据库数据而变！-->
-                                </div>
-                                <div class="col-md-3" style="padding-top:25px;">
-                                    <p><?php echo $row1[4]; ?> 来自 <?php
-                                        $link2 = mysqli_connect('localhost', 'root', '', 'odb');
-                                        mysqli_query($link2, 'set names utf8');
-                                        $sql2 = "select `username` from `user` where `id`=$row1[1]";
-                                        $result2 = mysqli_query($link2, $sql2);
-                                        $row2 = mysqli_fetch_row($result2);
-                                        echo $row2[0];
-                                        ?></p><!--时间 来自 发送者-->
-                                </div>
-                            </div>
-                            <div class="row" style="padding-top:20px">
-                                <div class="col-sm-12">
-                                    <!--通知内容！-->
-                                    <p><?php echo $row1[3]; ?></p>
-                                </div>
+                            <div class="adv-table">
+                                <table class="display table table-hover" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th>活动名称</th>
+                                        <th>负责人</th>
+                                        <th>状态</th>
+                                        <th>开始时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+
+                                    //每循环一次，取一行数据记录显示在一行中
+
+                                    $link = mysqli_connect('localhost', 'root', '', 'odb');
+                                    mysqli_query($link, 'set names utf8');
+
+                                    $sql = "select * from activity  ";
+                                    $result = mysqli_query($link, $sql);
+                                    $row = mysqli_fetch_row($result);
+                                    while ($row) {
+                                        ?>
+                                        <tr style="background-color:#fff">
+                                            <td>
+                                                <a href="#">
+                                                    <?php
+                                                    echo $row[1];
+                                                    ?>
+                                                </a>
+                                            </td>
+                                            <td class="hidden-phone">
+                                                <?php
+                                                echo $row[5];
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                echo $row[3];
+                                                ?>
+                                            </td>
+                                            <td><span class="label label-warning label-mini">
+                                            <?php
+                                            if ($row[6] == 0)
+                                                echo "待审批";
+                                            else if ($row[6] == 1 || $row[6] == 2)
+                                                echo "已通过";
+                                            else if ($row[6] == 3)
+                                                echo "未通过";
+                                            else if ($row[6] == -1)
+                                                echo "被驳回";
+                                            ?>
+                                        </span></td>
+                                            <td>
+                                                <?php
+                                                $sql2 = "select `username` from user where id=$row[2] ";
+                                                $result2 = mysqli_query($link, $sql2);
+                                                $row2 = mysqli_fetch_row($result2);
+                                                echo $row2[0];
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        $row = mysqli_fetch_row($result);
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </section>
@@ -250,6 +291,12 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="../js/dynamic_table_init.js"></script>
 
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>

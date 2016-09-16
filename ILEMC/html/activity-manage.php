@@ -162,7 +162,7 @@ session_start();
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -211,11 +211,11 @@ session_start();
                                     // echo var_dump($_SESSION);
                                     // $_SESSION['xx']=xx
 
-//                                    if (isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
-                                    if(1)
+                                    //                                    if (isset($_SESSION['iflogin']) && $_SESSION['iflogin'])
+                                    if (1)
                                     {
                                     $nowuserid = $nowuserid = $_SESSION['userid'];
-                                    $sql = "select * from activity where responsibility=$nowuserid ";
+                                    $sql = "select * from activity where responsibility=$nowuserid and (`state`=1 or `state`=2)";
                                     $result = mysqli_query($link, $sql);
                                     $row = mysqli_fetch_row($result);
                                     while ($row){
@@ -250,6 +250,8 @@ session_start();
                                             echo "已开始";
                                         else if ($row[6] == 2)
                                             echo "已结束";
+                                        else if ($row[6] == -1)
+                                            echo "被驳回";
                                         ?>
                                     </span></td>
                                         <td>

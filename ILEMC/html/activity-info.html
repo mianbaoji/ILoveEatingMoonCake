@@ -9,7 +9,12 @@
   <link rel="shortcut icon" href="#" type="image/png">
 
   <title>小型社团资金流动记录系统</title>
-
+   
+  <!--data table-->
+  <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+  <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css" />
+  
   <!--common-->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/style-responsive.css" rel="stylesheet">
@@ -162,12 +167,339 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<section class="panel">
-						<header class="panel-heading">
-							<!--此处应为跳转过来的页面，根据实际修改href和文本-->
-							<a href="activity-manage.html" style="text-decoration:none">我管理的活动</a> > 活动详情
+						<header class="panel-heading custom-tab turquoise-tab">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a data-toggle="tab" href="#info">
+										<i class="fa fa-home"></i>
+										活动详情
+									</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#account">
+										<i class="fa fa-book"></i>
+										活动账目
+									</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#members">
+										<i class="fa fa-users"></i>
+										小组成员
+									</a>
+								</li>
+							</ul>
 						</header>
 						<div class="panel-body">
-							
+							<div class="tab-content">
+								<div id="info" class="tab-pane active">
+									<div class="row">
+										<div class="col-md-4">
+											<ul class="p-info">
+												<li>
+													<div class="title">负责人</div>
+													<div class="desk">月饼小姐</div>
+												</li>
+												<li>
+													<div class="title">开始时间</div>
+													<div class="desk">2016.09.10</div>
+												</li>
+												<li>
+													<div class="title">结束时间</div>
+													<div class="desk">2016.09.12</div><!--若尚未结束此处用两个横杠“--”代替-->
+												</li>
+												<li>
+													<div class="title">状态</div>
+													<div class="desk"><span class="label label-danger">已结束</span></div><!--如果状态是进行中，则label-danger改为label-warning-->
+												</li>
+											</ul>
+										</div>
+										<div class="col-md-8">
+											<p style="font-size:18px"><strong>一起上月亮砍树</strong></p><!--活动名称，下面是内容-->
+											<p style="padding-top:10px">今年中秋月色这么地好...号召全实验室呢一起上月亮砍树，砍下来的树呢可以当柴火烧玉兔吃。一定很美味。望组织批准我们这个淳朴的活动。</p>
+										</div>
+									</div>
+								</div>
+								<div id="account" class="tab-pane">
+									<header class="panel-heading">
+										活动总账
+										<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
+									</header>
+									<div class="panel-body">
+										<!--小boss且项目正在进行中用这个表格，从这里开始-->
+										<!--更换表格请通过下列一行中style里的display.'display:none'表示隐藏；'display:block'表示显示-->
+										<div class="adv-table editable-table" style="display:block">
+											<div class="clearfix">
+												<div class="btn-group">
+													<button id="editable-sample_new" class="btn btn-primary">
+														新增<i class="fa fa-plus"></i>
+													</button>
+												</div>
+											</div>
+											<div class="space15">
+												<table class="table table-bordered" id="info-editable">
+													<thead>
+														<tr>
+															<th>物品名称</th>
+															<th>价格</th>
+															<th>数量</th>
+															<th>总价</th>
+															<th>备注</th>
+															<th>操作</th>
+															<th>操作</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
+														</tr>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
+														</tr>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
+														</tr>
+														<tr class="">
+															<td>月饼</td>
+															<td>300</td>
+															<td>5</td>
+															<td>1500</td>
+															<td>一人一盒</td>
+															<td><a class="edit" href="javascript:;">编辑</a></td>
+															<td><a class="delete" href="javascript:;">删除</a></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<!--小组长表格到这里结束-->
+										<!--普通用户的表格和结束项目的表格，从这里开始-->
+										<div class="adv-table" style="display:none">
+											<table class="display table table-bordered" id="dynamic-table">
+												<thead>
+													<tr>
+														<th>物品名称</th>
+														<th>价格</th>
+														<th>数量</th>
+														<th>总价</th>
+														<th>备注</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+														</tr>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+													</tr>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+													</tr>
+													<tr class="">
+														<td>月饼</td>
+														<td>300</td>
+														<td>5</td>
+														<td>1500</td>
+														<td>一人一盒</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<!--到这里结束-->
+									</div>
+									<!--活动组长的个人总账从这里开始，请用display:none和display:block控制隐藏和显示-->
+									<div style="display:block">
+										<header class="panel-heading">
+											个人总账
+											<span style="float:right;">总额：<i class="fa fa-jpy"></i>4000.00</span>
+										</header>
+										<div class="panel-body">
+											<div class="adv-table" style="display:block">
+												<table class="table table-bordered">
+													<thead>
+														<tr>
+															<th>用户名</th>
+															<th>应收</th>
+															<th>状态</th>
+															<th>操作</th>
+															<th>操作</th>
+														</tr>
+													</thead>
+													<!--只有状态是待审核才可以触发“通过”和“驳回”两个点击-->
+													<tbody>
+														<tr class="">
+															<td>月饼小姐</td>
+															<td>300</td>
+															<td><span class="label label-danger label-mini">未通过</span></td>
+															<td><a href="#">通过</a></td>
+															<td><a href="#">驳回</a></td>
+														</tr>
+														<tr class="">
+															<td>月饼小姐</td>
+															<td>300</td>
+															<td><span class="label label-success label-mini">已通过</span></td>
+															<td><a href="#">通过</a></td>
+															<td><a href="#">驳回</a></td>
+														</tr>
+														<tr class="">
+															<td>月饼小姐</td>
+															<td>300</td>
+															<td><span class="label label-warning label-mini">待审核</span></td>
+															<td><a href="">通过</a></td>
+															<td><a href="">驳回</a></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									<!--到这里结束-->
+									<!--小组成员的个人总账从这里开始，请用display:none和display:block控制隐藏和显示-->
+									<div style="display:none">
+										<header class="panel-heading">
+											个人总账
+										</header>
+										<div class="panel-body">
+											<!--此处是小组成员没填写过或是填写过然后被驳回重新填写，从这里开始-->
+											<div class="p1" style="display:none;">
+												<div class="col-md-6">
+													<form class="form-horizontal" role="form">
+														<div class="form-group">
+															<label for="i" class="col-lg-2 col-sm-2 control-label">应收</label>
+															<div class="col-lg-10">
+																<input type="text" class="form-control" id="i">
+																<!--下列一行为重新填写专有-->
+																<p class="help-block">您的应收请求被驳回，请重新填写！</p>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="col-lg-offset-2 col-lg-10">
+																<button type="submit" class="btn btn-primary">提交</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+											<!--到这里结束-->
+											<!--此处是已填写待审核或已通过或者已收回-->
+											<div class="p2" style="display:block;">
+												<div class="col-md-3">
+													<ul class="p-info">
+														<li>
+															<div class="title">应收</div>
+															<div class="desk"><i class="fa fa-jpy"></i>300</div>
+														</li>
+														<li>
+															<div class="title">状态</div>
+															<div class="desk">已通过</div><!--待审核或已通过或已收回-->
+														</li>
+													</ul>
+													<!--只有状态是已通过，才有此按钮-->
+													<button type="submit" class="btn btn-primary" style="margin-top:10px;">确认已收回</button>
+												</div>
+											</div>
+											<!--到这里结束-->
+										</div>
+									</div>
+									<!--到这里结束-->
+								</div>
+								<div id="members" class="tab-pane">
+									<div class="row">
+										<div class="col-sm-12">
+											<header class="panel-heading">
+												活动组长
+											</header>
+											<div class="panel-body">
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月饼小姐</label>
+												</div>
+											</div>
+											<header class="panel-heading">
+												小组成员
+												<!--若非组长进入这个页面，请隐藏添加和删除按钮。用display:none隐藏;display:block显示-->
+												<!--点击此处的删除按钮时，每个用户前面出现选择框，见第一个例子-->
+												<button class="btn btn-primary" style="float:right; padding:3px 10px;">添加</button>
+												<button class="btn btn-default" style="float:right; padding:3px 10px; margin-right:10px;">删除</button>
+											</header>
+											<div class="panel-body">
+												<div class="use">
+													<input type="checkbox"><!--此为选择框语句，一般不可见，点击删除按钮时每个用户前面都添加一个选择框-->
+													<img src="../images/photos/user2.png" alt="">
+													<label>月亮小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月球小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月星小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月光小姐</label>
+												</div>
+												<div class="use">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月明小姐</label>
+												</div>
+												<!--默认此div的display:none;即为隐藏;当点击小组成员中的删除按钮时变为display:block;点击此列表下的删除或取消按钮时，又变为display:none;请用php实现-->
+												<div style="clear:both; padding-top:10px; display:none">
+													<button class="btn btn-primary" style="padding:3px 10px; margin-right:10px;">删除</button>
+													<button class="btn btn-default" style="padding:3px 10px;">取消</button>
+												</div>
+											</div>
+											<!--默认此div的display:none;即为隐藏;当点击小组成员中的添加按钮时变为display:block;点击此列表下的添加或取消按钮时，又变为display:none;请用php实现-->
+											<div style="display:none">
+											<header class="panel-heading">
+												用户列表
+											</header>
+											<div class="panel-body">
+												<div class="use">
+													<input type="checkbox">
+													<img src="../images/photos/user2.png" alt="">
+													<label>月亮小姐</label>
+												</div>
+												<div style="clear:both; padding-top:10px;">
+													<button class="btn btn-primary" style="padding:3px 10px; margin-right:10px;">添加</button>
+													<button class="btn btn-default" style="padding:3px 10px;">取消</button>
+												</div>
+											</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -195,8 +527,28 @@
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
 
+<!--data table-->
+<script type="text/javascript" src="../js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
+
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>
+
+<!--script for editable table-->
+<script src="../js/info-editable.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript" src="../js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="../js/dynamic_table_init.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        InfoEditable.init();
+    });
+</script>
 
 </body>
 </html>

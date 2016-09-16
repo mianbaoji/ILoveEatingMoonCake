@@ -6,7 +6,8 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="keywords"
+          content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
@@ -14,9 +15,9 @@ session_start();
     <title>小型社团资金流动记录系统</title>
 
     <!--dynamic table-->
-    <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-    <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css" />
+    <link href="../js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+    <link href="../js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../js/data-tables/DT_bootstrap.css"/>
 
     <!--common-->
     <link href="../css/style.css" rel="stylesheet">
@@ -40,6 +41,7 @@ $sql3 = "select `username` from `user` where id = $nowuserid ";
 $result3 = mysqli_query($link, $sql3);
 @$row3 = mysqli_fetch_row($result3);
 ?>
+
 <section>
     <!-- left side start-->
     <div class="left-side sticky-left-side">
@@ -98,7 +100,7 @@ $result3 = mysqli_query($link, $sql3);
     <!-- left side end-->
 
     <!-- main content start-->
-    <div class="main-content" >
+    <div class="main-content">
 
         <!-- header section start-->
         <div class="header-section">
@@ -109,7 +111,7 @@ $result3 = mysqli_query($link, $sql3);
 
             <!--search start-->
             <form class="searchform" action="#" method="post">
-                <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
             </form>
             <!--search end-->
 
@@ -151,15 +153,15 @@ $result3 = mysqli_query($link, $sql3);
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="../images/photos/user2.png" alt="" />
+                            <img src="../images/photos/user2.png" alt=""/>
                             <?php
                             echo $row3[0];
                             ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="person-info.php"><i class="fa fa-user"></i>  个人信息</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="person-info.php"><i class="fa fa-user"></i> 个人信息</a></li>
+                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -199,32 +201,64 @@ $result3 = mysqli_query($link, $sql3);
                                         <th>发送时间</th>
                                     </tr>
                                     </thead>
-
                                     <tbody>
+                                    <?php
+                                    $link1 = mysqli_connect('localhost', 'root', '', 'odb');
+                                    mysqli_query($link1, 'set names utf8');
+
+                                    $sql = "select * from `information` where `receiveid`=$nowuserid";
+                                    $result = mysqli_query($link1, $sql);
+
+                                    ?>
                                     <tr style="background-color:#fff">
+                                        <?php
+                                        while ($row = mysqli_fetch_row($result)) {
+                                        ?>
                                         <td>
-                                            <a href="message-info.php">
-                                                通知！
+                                            <a href="message-info.php?id=<?php echo $row[0]; ?>">
+                                                <?php
+                                                echo $row[6];
+                                                ?>
                                             </a>
                                         </td>
-                                        <td class="hidden-phone">您的活动申请已...吧啦吧啦</td>
-                                        <td>系统 </td>
-                                        <td><span class="label label-danger label-mini">未读</span></td>
-                                        <!-- 此处请注意，不同状态的class不太一样。未读状态为label-danger，已读状态为label-success -->
-                                        <td>2016-09-08</td>
-                                    </tr>
-                                    <tr style="background-color:#fff">
-                                        <td>
-                                            <a href="message-info.php">
-                                                春游
-                                            </a>
+                                        <td class="hidden-phone">
+                                            <?php
+                                            echo $row[3];
+                                            ?>
                                         </td>
-                                        <td class="hidden-phone">一起去春游怎么样....吧啦吧啦</td>
-                                        <td>月饼小姐 </td>
-                                        <td><span class="label label-success label-mini">已读</span></td>
-                                        <td>2016-09-01</td>
+                                        <td>
+                                            <?php
+                                            $link4 = mysqli_connect('localhost', 'root', '', 'odb');
+                                            mysqli_query($link4, 'set names utf8');
+                                            $sql4 = "select username from `user` where id=$row[1]";
+                                            $result4 = mysqli_query($link4, $sql4);
+                                            $row4 = mysqli_fetch_row($result4);
+                                            //echo var_dump($row4);
+                                            echo $row4[0];
+                                            ?>
+                                        </td>
+                                        <?php
+                                        if ($row[5] == 0) {
+                                            ?>
+                                            <td><span class="label label-danger label-mini">未读</span></td>
+                                            <?php
+                                        } else if ($row[5] == 1) {
+                                            ?>
+                                            <td><span class="label label-success label-mini">已读</span></td>
+                                            <?php
+                                        }
+                                        ?>
+                                        <td>
+                                            <?php
+                                            echo $row[4];
+                                            ?>
+                                        </td>
                                     </tr>
-                                    </tbody>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <!-- 此处请注意，不同状态的class不太一样。未读状态为label-danger，已读状态为label-success -->
                                 </table>
                             </div>
                         </div>
@@ -233,7 +267,6 @@ $result3 = mysqli_query($link, $sql3);
             </div>
         </div>
         <!-- body wrapper end-->
-
 
         <!--footer section start-->
         <footer>

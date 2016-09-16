@@ -13,6 +13,16 @@ session_start();
 
     <title>小型社团资金流动记录系统</title>
 
+    <!--ios7-->
+    <link rel="stylesheet" type="text/css" href="../js/ios-switch/switchery.css" />
+
+    <!--icheck-->
+    <link href="../js/iCheck/skins/minimal/green.css" rel="stylesheet">
+    <link href="../js/iCheck/skins/square/green.css" rel="stylesheet">
+    <link href="../js/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+
     <!--common-->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet">
@@ -25,30 +35,18 @@ session_start();
 </head>
 
 <body class="sticky-header">
-<?php
-$link = mysqli_connect('localhost', 'root', '', 'odb');
-mysqli_query($link, 'set names utf8');
 
-if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
-    $nowuserid = $_SESSION['userid'];
-    //echo $nowuserid;
-    $sql = "select `username` from `user` where id = $nowuserid ";
-    $result = mysqli_query($link, $sql);
-    @$row = mysqli_fetch_row($result);
-    $username = $row[0];
-}
-?>
 <section>
     <!-- left side start-->
     <div class="left-side sticky-left-side">
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <a href="b-index.php"><img src="../images/logo.png" alt=""></a>
+            <a href="index.php"><img src="../images/logo.png" alt=""></a>
         </div>
 
         <div class="logo-icon text-center">
-            <a href="b-index.php"><img src="../images/logo_icon.png" alt=""></a>
+            <a href="index.php"><img src="../images/logo_icon.png" alt=""></a>
         </div>
         <!--logo and iconic logo end-->
 
@@ -60,41 +58,32 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
                 <div class="media logged-user">
                     <img alt="" src="../images/photos/user2.png" class="media-object">
                     <div class="media-body">
-                        <h4><a href="#">月饼小姐</a></h4>
+                        <h4><a href="person-info.php">月饼小姐</a></h4>
                     </div>
                 </div>
 
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li><a href="b-person-info.php"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
+                    <li><a href="person-info.php"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
                     <li><a href="../login.php"><i class="fa fa-sign-out"></i> <span>注销登陆</span></a></li>
                 </ul>
             </div>
 
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li><a href="b-person-account.php"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
+                <li><a href="person-account.php"><i class="fa fa-book"></i> <span>个人账户</span></a></li>
                 <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>活动管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="b-activity-manage.php"> 我管理的活动</a></li>
-                        <li><a href="b-activity-join.php"> 我参与的活动</a></li>
-                        <li><a href="b-activity-new.php"> 新建活动</a></li>
-                        <li><a href="b-activity-approve.php"> 审批活动</a></li>
+                        <li><a href="activity-manage.php"> 我管理的活动</a></li>
+                        <li><a href="activity-join.php"> 我参与的活动</a></li>
+                        <li><a href="activity-new.php"> 申请活动</a></li>
+                        <li><a href="activity-approving.php">审核中的活动</a></li>
 
                     </ul>
                 </li>
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-bell"></i> <span>通知管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="b-message-all.php"> 查看通知</a></li>
-                        <li><a href="b-message-new.php"> 发布通知</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="b-person-manage.php"><i class="fa fa-users"></i> <span>人员管理</span></a></li>
-
-                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>账目管理</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="b-account-all.php"> 查看账目</a></li>
-                        <li><a href="b-account-approve.php"> 审核账目</a></li>
+                        <li><a href="message-all.php"> 查看通知</a></li>
+                        <li class="active"><a href="message-new.php"> 发布通知</a></li>
                     </ul>
                 </li>
             </ul>
@@ -114,7 +103,7 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
             <a class="toggle-btn"><i class="fa fa-bars"></i></a>
             <!--toggle button end-->
 
-            <!--search start 搜索功能待定-->
+            <!--search start-->
             <form class="searchform" action="#" method="post">
                 <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
             </form>
@@ -132,41 +121,52 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
                             <h5 class="title">通知</h5>
                             <ul class="dropdown-list normal-list">
                                 <li class="new">
-                                    <a href="b-message-info.php">
+                                    <a href="message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前 例 30mins ago</em>
                                     </a>
                                 </li>
                                 <li class="new">
-                                    <a href="b-message-info.php">
+                                    <a href="message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前 例 1小时之前</em>
                                     </a>
                                 </li>
                                 <li class="new">
-                                    <a href="b-message-info.php">
+                                    <a href="message-info.php">
                                         <span class="label label-danger"><i class="fa fa-bolt"></i></span>
                                         <span class="name">通知简述  </span>
                                         <em class="small">多久之前</em>
                                     </a>
                                 </li>
-                                <li class="new"><a href="b-message-all.php">查看所有通知</a></li>
+                                <li class="new"><a href="message-all.php">查看所有通知</a></li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="../images/photos/user2.png" alt="" /> <!--用户头像...待定功能= =-->
+                            <img src="../images/photos/user2.png" alt="" />
                             <?php
-                            echo $username;
+                            $link = mysqli_connect('localhost', 'root', '', 'odb');
+                            mysqli_query($link, 'set names utf8');
+
+                            //                            if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
+                            if(1){
+                                $nowuserid = $_SESSION['userid'];
+//                                echo $nowuserid;
+                                $sql3 = "select `username` from `user` where id = $nowuserid ";
+                                $result3 = mysqli_query($link, $sql3);
+                                @$row3 = mysqli_fetch_row($result3);
+                                echo $row3[0];
+                            }
                             ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="b-person-info.php"><i class="fa fa-user"></i>  个人信息</a></li>
-                            <li><a href="../login.php"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
+                            <li><a href="person-info.php"><i class="fa fa-user"></i>  个人信息</a></li>
+                            <li><a href="#"><i class="fa fa-sign-out"></i> 注销登陆</a></li>
                         </ul>
                     </li>
 
@@ -185,45 +185,73 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
 
         <!--body wrapper start -->
         <?php
-        $informationid = $_GET['id'];
         $link1 = mysqli_connect('localhost', 'root', '', 'odb');
         mysqli_query($link1, 'set names utf8');
-        $sql1 = "select * from `information` where `id`=$informationid";
-        $result1 = mysqli_query($link1, $sql1);
-        $row1 = mysqli_fetch_row($result1);
 
+        $sql1 = "select `username` from user where `id`!=$nowuserid";
+        $result1 = mysqli_query($link1, $sql1);
         ?>
         <div class="wrapper" style="font-family:微软雅黑">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-md-3">
                     <section class="panel">
                         <header class="panel-heading">
-                            <a href="b-message-all.php" style="text-decoration:none">查看所有通知</a> > 通知详情
+                            用户列表
                         </header>
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <h3>[主题]<?php
-                                        echo $row1[6];
-                                        ?></h3></h3><!--主题不变，后面具体根据数据库数据而变！-->
+                            <form class="form-horizontal bucket-form" method="get">
+                                <div class="icheck">
+                                    <div class="flat-green single-row">
+                                        <?php
+                                        while ($row1 = mysqli_fetch_row($result1)) {
+                                            ?>
+                                            <div class="radio">
+                                                <!--此处若给input添加checked,即表示被选中-->
+                                                <input type="checkbox">
+                                                <img src="../images/photos/user2.png" alt=""/>
+                                                <label>
+                                                    <?php
+                                                    echo $row1[0];
+                                                    ?>
+                                                </label>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
-                                <div class="col-md-3" style="padding-top:25px;">
-                                    <p><?php echo $row1[4]; ?> 来自 <?php
-                                        $link2 = mysqli_connect('localhost', 'root', '', 'odb');
-                                        mysqli_query($link2, 'set names utf8');
-                                        $sql2 = "select `username` from `user` where `id`=$row1[1]";
-                                        $result2 = mysqli_query($link2, $sql2);
-                                        $row2 = mysqli_fetch_row($result2);
-                                        echo $row2[0];
-                                        ?></p><!--时间 来自 发送者-->
+                            </form>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-9">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            发布通知
+                        </header>
+                        <div class="panel-body">
+                            <form action="" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="mTitle">通知主题</label>
+                                        <input type="text" class="form-control" id="mTitle" placeholder="通知主题不可为空" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row" style="padding-top:20px">
-                                <div class="col-sm-12">
-                                    <!--通知内容！-->
-                                    <p><?php echo $row1[3]; ?></p>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <!--当用户列表中的用户被选中之后，此处应该显示，多个用户以逗号分隔；同样的，此处输入正确的用户名之后，用户列表应被选中——此为php实现部分-->
+                                        <label for="mUser">接收人</label>
+                                        <input type="text" class="form-control" id="mUser" placeholder="接收人不可为空"/>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="mContent">通知内容</label>
+                                        <textarea class="wysihtml5 form-control" rows="9" id="mContent" placeholder="通知内容不可为空"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">发布</button>
+                            </form>
                         </div>
                     </section>
                 </div>
@@ -243,7 +271,7 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
     <!-- main content end-->
 </section>
 
-<!-- 以下是js -->
+<!-- Placed js at the end of the document so the pages load faster -->
 <script src="../js/jquery-1.10.2.min.js"></script>
 <script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="../js/jquery-migrate-1.2.1.min.js"></script>
@@ -251,8 +279,27 @@ if (isset($_SESSION['iflogin']) && $_SESSION['iflogin']) {
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
 
+<script type="text/javascript" src="../js/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript" src="../js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="../js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+<!--ios7-->
+<script src="../js/ios-switch/switchery.js" ></script>
+<script src="../js/ios-switch/ios-init.js" ></script>
+
+<!--icheck -->
+<script src="../js/iCheck/jquery.icheck.js"></script>
+<script src="../js/icheck-init.js"></script>
+
 <!--common scripts for all pages-->
 <script src="../js/scripts.js"></script>
+
+<script>
+    jQuery(document).ready(function(){
+        $('.wysihtml5').wysihtml5();
+    });
+</script>
 
 </body>
 </html>
