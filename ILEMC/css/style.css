@@ -2658,6 +2658,8 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
     margin-right: 10px;
 }
 
+
+
 /*----------------------------------------------
     CUSTOM CHECKBOX & RADIO BUTTONS STYLES
 ----------------------------------------------*/
@@ -2682,6 +2684,35 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
     display: inline-block;
     width: 100%;
 }
+
+.icheck .single-row .radio img{
+	width:25px;
+	height:25px;
+	border-radius:4px;
+    -webkit-border-radius:4px;
+	margin-left:10px;
+	margin-right:5px;
+}
+
+.use  img{
+	width:30px;
+	height:30px;
+	border-radius:4px;
+    -webkit-border-radius:4px;
+	margin-left:10px;
+	margin-right:5px;
+}
+
+.use{
+	float:left;
+	margin-right:20px;
+	margin:10px 25px 10px 0;
+}
+
+.use input{
+	padding-top:10px;
+}
+
 
 /*-------------------------
     MULTI SELECT STYLE
@@ -4708,3 +4739,18 @@ ol.comment-list {
     border-radius: 5px;
     -webkit-border-radius: 5px;
 }
+
+/*---------------------------
+
+-----------------------------*/
+.p1 p{
+	color:red;
+	display:none;
+}
+
+
+
+
+
+
+

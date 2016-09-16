@@ -196,7 +196,7 @@ $nowuserid = $_SESSION['userid'];
         $link1 = mysqli_connect('localhost', 'root', '', 'odb');
         mysqli_query($link1, 'set names utf8');
 
-        $sql1 = "select `username` from user where `id`!=$nowuserid";
+        $sql1 = "select * from user where `id`!=$nowuserid";
         $result1 = mysqli_query($link1, $sql1);
         ?>
         <div class="wrapper" style="font-family:微软雅黑">
@@ -212,14 +212,15 @@ $nowuserid = $_SESSION['userid'];
                                     <div class="flat-green single-row">
                                         <?php
                                         while ($row1 = mysqli_fetch_row($result1)) {
+                                            $userid=$row1[0];
                                             ?>
                                             <div class="radio">
                                                 <!--此处若给input添加checked,即表示被选中-->
-                                                <input type="checkbox">
+                                                <input type="checkbox" value="$userid">
                                                 <img src="../images/photos/user2.png" alt=""/>
                                                 <label>
                                                     <?php
-                                                    echo $row1[0];
+                                                    echo $row1[1];
                                                     $box=$_GET["check-box"];
                                                     echo "选项".$box."被选中<br />";
                                                     ?>
